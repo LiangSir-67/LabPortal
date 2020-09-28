@@ -4,9 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Data extends Model
+class SearchList extends Model
 {
-    protected $table = "data";
+    protected $table = "search_list";
     public $timestamps = true;
-    protected $primaryKey = 'data_id';
+    protected $primaryKey = 's_id';
 }

@@ -4,9 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Content extends Model
+class NewsBulletinManage extends Model
 {
-    protected $table = "content";
+    protected $table = "news_bulletin_manage";
     public $timestamps = true;
     protected $primaryKey = 'nb_id';
 }

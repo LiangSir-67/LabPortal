@@ -4,9 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Fan extends Model
+class Collect extends Model
 {
-    protected $table = "fans";
+    protected $table = "collect";
     public $timestamps = true;
-    protected $primaryKey = 'fans_id';
+    protected $primaryKey = 'id';
 }

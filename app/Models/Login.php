@@ -31,8 +31,8 @@ class Login extends \Illuminate\Foundation\Auth\User implements JWTSubject,Authe
     public static function updateDate($login_id){
      try{
          $model = Login::find($login_id);
-        $model ->login_date =    now();
-        return $model ->save();
+         $model ->login_date =    now();
+         return $model ->save();
 
      }catch (Exception $e){
          logError("更新用户登陆时间出错！",$e->getMessage());

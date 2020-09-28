@@ -4,9 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Material extends Model
+class Like extends Model
 {
-    protected $table = "material";
+    protected $table = "like";
     public $timestamps = true;
-    protected $primaryKey = 'material';
+    protected $primaryKey = 'id';
 }
