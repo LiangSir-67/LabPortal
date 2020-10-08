@@ -23,6 +23,13 @@ Route::prefix('auth')->namespace('Auth')->group(function () {
     Route::post('register', 'AuthController@registered'); //刷新token
 });
 
+Route::post('admin/commmanage/insertmember','Admin\CommManage\OperateController@insertMember');//插入成员
+Route::get('admin/commmanage/selectall','Admin\CommManage\OperateController@selectAll');//插入成员
+Route::get('admin/commmanage/showmember','Admin\CommManage\OperateController@showMember');//展示成员
+Route::get('admin/commmanage/querymember','Admin\CommManage\OperateController@queryMember');//查询成员
+Route::post('admin/commmanage/modifymember','Admin\CommManage\OperateController@modifyMember');//修改状态
+
+
 Route::get('showadmin', 'Admin\AdminPageController@showAdmin');//后台管理主页展示
 
 Route::prefix('pagecontent')->namespace('Admin\PageContent')->group(function () {//页面内容路由组
@@ -49,7 +56,6 @@ Route::prefix('pagecontent')->namespace('Admin\PageContent')->group(function () 
     Route::post('updatefriendurl','FriendUrlController@updateFriendUrl');//更新友链
     Route::post('addfriendurl','FriendUrlController@addFriendUrl');//新增友链
 });
-
 
 
 
