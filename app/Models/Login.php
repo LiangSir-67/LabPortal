@@ -62,7 +62,12 @@ class Login extends \Illuminate\Foundation\Auth\User implements JWTSubject,Authe
     }
 
 
-    //插入成员
+    /**
+     * 根据传入的参数存入数据库
+     * @author Chenqiuxiang <github.com/Varsion>
+     * @param $login_id,$password
+     * @return json
+     */
     public static function insertMember($login_id,$password){
     try{
         $res=self::insert(
@@ -79,7 +84,12 @@ class Login extends \Illuminate\Foundation\Auth\User implements JWTSubject,Authe
         return json_fail(100,"插入失败",null);
     }
 }
-     //修改成员状态
+       /**
+     * 修改成员状态
+     * @author Chenqiuxiang <github.com/Varsion>
+     * @param login_id=>账号，login_status=>状态
+     * @return $res
+     */
     public static function modifyMember($login_id,$login_status){
         try{
            if($login_status==1){

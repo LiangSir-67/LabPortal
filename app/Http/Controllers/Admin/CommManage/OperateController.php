@@ -9,7 +9,12 @@ use App\Models\Login;
 use App\Models\UserInformation;
 class OperateController extends Controller
 {
-    //插入成员
+    /**
+     * 根据参数插入数据
+     * @author Chenqiuxiang <github.com/Varsion>
+     * @param user_id=>学号，user_password=>密码
+     * @return $result,$res
+     */
     public function insertMember(request $request){
         $login_id=$request['user_id'];
         $password=$request['user_password'];
@@ -25,7 +30,11 @@ class OperateController extends Controller
         return $res;
     }
 
-    //展示成员
+      /**
+     * 展示成员
+     * @author Chenqiuxiang <github.com/Varsion>
+     * @return $data,json
+     */
     public function showMember(){
         $data=UserInformation::showMember();
         // dd($data);
@@ -37,7 +46,12 @@ class OperateController extends Controller
         }
 
     }
-    //查询成员
+      /**
+     * 根据昵称或者账号查询成员
+     * @author Chenqiuxiang <github.com/Varsion>
+     * @param nichen=>昵称，user_id=>账号
+     * @return json
+     */
     public function queryMember(request $request){
     $nichen=$request['nichen'];
     $information_id=$request['user_id'];
@@ -48,7 +62,12 @@ class OperateController extends Controller
         return json_fail("查询数据失败",null,100);
     }
   }
-     //修改状态
+       /**
+     * 修改成员的状态
+     * @author Chenqiuxiang <github.com/Varsion>
+     * @param user_id=>账号，user_status=>状态
+     * @return json
+     */
     public function modifyMember(request $request){
         $login_id=$request['user_id'];
         $login_status=$request['user_status'];

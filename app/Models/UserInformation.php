@@ -10,7 +10,11 @@ class UserInformation extends Model
     public $timestamps = true;
     protected $primaryKey = 'id';
     protected $fillable = ['information_id'];
-    //展示成员
+      /**
+     * 展示成员
+     * @author Chenqiuxiang <github.com/Varsion>
+     * @return $data
+     */
     public static function showMember(){
         $data =  self::join('login','information_id','login_id')
             ->select('information_id','nichen','name','sex','login_date','login_status')
@@ -19,7 +23,12 @@ class UserInformation extends Model
          return $data;
 
     }
-    //查询成员
+      /**
+     * 根据昵称或者账号查询成员
+     * @author Chenqiuxiang <github.com/Varsion>
+     * @param nichen=>昵称，information_id=>账号
+     * @return $data
+     */
     public static function queryMember($nichen,$information_id){
         // dd($information_id);
         // dd($nichen);
@@ -40,7 +49,12 @@ class UserInformation extends Model
         }
 
     }
-    //插入成员
+    /**
+     * 根据传入的参数存入数据库
+     * @author Chenqiuxiang <github.com/Varsion>
+     * @param $login_id
+     * @return json
+     */
     public static function insertInfromation($login_id)
     {
         try{
