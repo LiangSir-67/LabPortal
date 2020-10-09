@@ -14,6 +14,7 @@ class Link extends Model
 
     /**
      * 展示友链
+     * @auther ZhongChun <github.com/RobbEr929>
      * return [string]
      */
     public static function zc_show(){
@@ -28,6 +29,7 @@ class Link extends Model
 
     /**
      * 删除友链
+     * @auther ZhongChun <github.com/RobbEr929>
      * @param [string]
      */
     public static function zc_delete($zc){
@@ -43,6 +45,7 @@ class Link extends Model
 
     /**
      * 修改友链
+     * @auther ZhongChun <github.com/RobbEr929>
      * @param [string]
      */
     public static function zc_update($zc){
@@ -63,6 +66,7 @@ class Link extends Model
 
     /**
      * 新增友链
+     * @auther ZhongChun <github.com/RobbEr929>
      * @param [string]
      */
     public static function zc_insert($zc){

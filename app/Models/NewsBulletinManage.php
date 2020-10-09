@@ -39,6 +39,7 @@ class NewsBulletinManage extends Model
 
     /**
      * 获取当前表的nb_id
+     * @auther ZhongChun <github.com/RobbEr929>
      * return int
      */
     public static function zc_getid(){
@@ -66,6 +67,7 @@ class NewsBulletinManage extends Model
 
     /**
      * 搜索表中所有数据
+     * @auther ZhongChun <github.com/RobbEr929>
      * return [string]
      */
     public static function zc_show(){
@@ -82,6 +84,7 @@ class NewsBulletinManage extends Model
 
     /**
      * 修改状态 (0-禁用，1-启用)
+     * @auther ZhongChun <github.com/RobbEr929>
      * @param [string]
      */
     public static function zc_operation($zc){
@@ -108,6 +111,7 @@ class NewsBulletinManage extends Model
 
     /**
      * 模糊查询
+     * @auther ZhongChun <github.com/RobbEr929>
      * @param [string]
      */
     public static function zc_select($zc){
@@ -126,6 +130,7 @@ class NewsBulletinManage extends Model
 
     /**
      * 编辑回显
+     * @auther ZhongChun <github.com/RobbEr929>
      * @param [string]
      * return [string]
      */

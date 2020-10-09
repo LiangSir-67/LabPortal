@@ -23,8 +23,14 @@ Route::prefix('auth')->namespace('Auth')->group(function () {
     Route::post('register', 'AuthController@registered'); //刷新token
 });
 
+/*
+ * @auther ZhongChun <github.com/RobbEr929>
+ */
 Route::get('showadmin', 'Admin\AdminPageController@showAdmin');//后台管理主页展示
 
+/*
+ * @auther ZhongChun <github.com/RobbEr929>
+ */
 Route::prefix('pagecontent')->namespace('Admin\PageContent')->group(function () {//页面内容路由组
     Route::post('addcontenttosql', 'PageContentController@addContentToSql');//将获取到的内容插入数据库的Content表
 

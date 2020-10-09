@@ -38,6 +38,7 @@ class Content extends Model
 
     /**
      * 获取当前表的nb_id
+     * @auther ZhongChun <github.com/RobbEr929>
      * return int
      */
     public static function zc_getid(){
@@ -51,11 +52,12 @@ class Content extends Model
 
     /**
      * 当关联的表插入失败时 删除所对应关联的表
+     * @auther ZhongChun <github.com/RobbEr929>
      * @param $nb_id
      */
     public static function zc_delete($nb_id){
         try {
-            self::where('labor_id',$labor_id)
+            self::where('labor_id',$nb_id)
                 ->delete();
             return true;
         }catch (\Exception $e){
