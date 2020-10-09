@@ -19,7 +19,6 @@ class ApplicationManagerController extends Controller //报名成员信息管理
     public function showMembers()//成员信息展示
     {
         $ans = Application::getMembersInformation();
-//       dd($ans);
         return $ans ?
             json_success('已报名成员信息展示成功', $ans, 200) :
             json_fail('无已报名成员信息', null, 100);

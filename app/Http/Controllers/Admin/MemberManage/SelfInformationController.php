@@ -17,8 +17,6 @@ class SelfInformationController extends Controller //报名申请页面
      */
     public function selfInformation(ApplicationRequest $request)//个人信息提交
     {
-//        dd($request);
-//        $ans = $request['value'];
         $re = [
             'application_id'=>$request['application_id'],
             'name' => $request['name'],

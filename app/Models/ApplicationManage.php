@@ -14,7 +14,6 @@ class ApplicationManage extends Model
      * @var string
      * @return mixed
      */
-    //protected $primaryKey = 'manage_id';
     public static function getMembersInformation()
     {
         try {
@@ -26,8 +25,6 @@ class ApplicationManage extends Model
         } catch (\Exception $e) {
             logError('无成员信息', [$e->getMessage()]);
         }
-//        $showtables=select('*');
-//        return $showtables;
     }
 
 }

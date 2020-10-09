@@ -32,7 +32,6 @@ class Application extends Model//报名系统界面
                 'self_introduce' => $ysq['self_introduce'],
                 'batch_num' => $ysq['batch_num']
             ]);
-//            dd($result);
             return $result;
         } catch (\Exception $e) {
             logError('报名信息插入错误', [$e->getMessage()]);
@@ -88,7 +87,6 @@ class Application extends Model//报名系统界面
         try {
             $date = self::where('application_id', $ysq['application_id'])
                 ->first();
-//dd($date['application_id']);
             if ($date!=null){
                 UserInformation::insert([
                     'information_id' => $date['application_id'],
@@ -99,8 +97,6 @@ class Application extends Model//报名系统界面
                     'produce' => $date['self_introduce']
                 ]);
             }
-
-//            dd($date);
             return $date;
         } catch (\Exception $e) {
             logError('成员添加不成功', [$e->getMessage()]);
