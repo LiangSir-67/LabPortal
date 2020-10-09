@@ -15,3 +15,4 @@ Route::get('/', function () {
     logInfo('网站部署成功');
     return json_success('网站部署成功');
 });
+Route::post('community/insertword','CommManage/CommunityController@insertWord');

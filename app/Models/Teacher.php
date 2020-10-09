@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use http\Exception;
 use Illuminate\Database\Eloquent\Model;
 
 class Teacher extends Model
@@ -91,6 +92,25 @@ class Teacher extends Model
             return true;
         } catch (\Exception $e) {
             logError('增加错误', [$e->getMessage()]);
+        }
+    }
+
+    /**
+     * 返回老师名字，职称，介绍，图片
+     * @author tangbangyan <github.com/doublebean>
+     * @return mixed
+     */
+    public static function tby_getTeacherContent()
+    {
+        try{
+
+            $date = self::select('name','profession','t_url','t_bridf')
+                ->orderby('priority','asc')
+                ->get();
+
+            return $date;
+        }catch(Exception $e){
+            logger::Error('没找到该图片',[$e->getMessage()]);
         }
     }
 }
