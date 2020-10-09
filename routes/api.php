@@ -22,6 +22,7 @@ Route::prefix('auth')->namespace('Auth')->group(function () {
     Route::post('refresh', 'AuthController@refresh'); //刷新token
     Route::post('register', 'AuthController@registered'); //刷新token
 });
+
 /**
  * @author tangbangyan <github.com/doublebean>
  */
@@ -39,3 +40,10 @@ Route::prefix('labhome')->namespace('LabHome')->group(function (){
     Route::get('getlabnew','IntroduceLabController@getlabnew'); //传给我新闻标题我返回具体内容
 
 });
+
+Route::post('admin/commmanage/insertmember','Admin\CommManage\OperateController@insertMember');//插入成员
+//Route::get('admin/commmanage/selectall','Admin\CommManage\OperateController@selectAll');//插入成员
+Route::get('admin/commmanage/showmember','Admin\CommManage\OperateController@showMember');//展示成员
+Route::get('admin/commmanage/querymember','Admin\CommManage\OperateController@queryMember');//查询成员
+Route::post('admin/commmanage/modifymember','Admin\CommManage\OperateController@modifyMember');//修改状态
+
