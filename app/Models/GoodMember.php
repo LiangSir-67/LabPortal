@@ -22,7 +22,7 @@ class GoodMember extends Model
     public static function zc_show()
     {
         try {
-            $res = GoodMember::orderBy('priority','asc')
+            $res = GoodMember::orderBy('priority', 'asc')
                 ->get();
             return $res;
         } catch (\Exception $e) {
@@ -38,7 +38,7 @@ class GoodMember extends Model
     public static function zc_delete($zc)
     {
         try {
-            $res = GoodMember::where('member_id',$zc['member_id'])
+            $res = GoodMember::where('member_id', $zc['member_id'])
                 ->delete();
             return true;
         } catch (\Exception $e) {
@@ -55,12 +55,12 @@ class GoodMember extends Model
     {
         try {
             $zc['updated_at'] = Carbon::now()->toDateTimeString();
-            $res = GoodMember::where('member_id',$zc['member_id'])
+            $res = GoodMember::where('member_id', $zc['member_id'])
                 ->update([
-                    'name'=>$zc['name'],
-                    'gm_bridf'=>$zc['gm_bridf'],
-                    'member_url'=>$zc['member_url'],
-                    'priority'=>$zc['priority'],
+                    'name' => $zc['name'],
+                    'gm_bridf' => $zc['gm_bridf'],
+                    'member_url' => $zc['member_url'],
+                    'priority' => $zc['priority'],
                     'updated_at' => $zc['updated_at']
                 ]);
             return true;
@@ -80,10 +80,10 @@ class GoodMember extends Model
             $zc['created_at'] = Carbon::now()->toDateTimeString();
             $zc['updated_at'] = $zc['created_at'];
             $res = Teacher::insert([
-                'name'=>$zc['name'],
-                'gm_bridf'=>$zc['gm_bridf'],
-                'member_url'=>$zc['member_url'],
-                'priority'=>$zc['priority'],
+                'name' => $zc['name'],
+                'gm_bridf' => $zc['gm_bridf'],
+                'member_url' => $zc['member_url'],
+                'priority' => $zc['priority'],
                 'created_at' => $zc['created_at'],
                 'updated_at' => $zc['updated_at']
             ]);
@@ -96,21 +96,21 @@ class GoodMember extends Model
 
     /**
      * 通过优先级获取在goodmemeber表中的数据
-     * @author tangbangyan <github.com/doublebean>
      * @param $id
      * @return mixed
+     * @author tangbangyan <github.com/doublebean>
      */
     public static function tby_getExcellentContent()
     {
-        try{
-            $date=self::select('name','member_url','gm_bridf')
-                ->orderby('priority','asc')
+        try {
+            $date = self::select('name', 'member_url', 'gm_bridf')
+                ->orderby('priority', 'asc')
                 ->take(3)
                 ->get();
 
             return $date;
-        }catch(Exception $e){
-            logger::Error('没找到优秀成员信息',[$e->getMessage()]);
+        } catch (Exception $e) {
+            logger::Error('没找到优秀成员信息', [$e->getMessage()]);
         }
     }
 }

@@ -12,14 +12,15 @@ class Application extends Model//报名系统界面
 {
     /**
      * 得到新成员信息
-     * @author yangsiqi<github.com/Double-R111>
      * @param  $ysq
-     * @var string
      * @return boolean
+     * @var string
+     * @author yangsiqi<github.com/Double-R111>
      */
     protected $table = "application";
     public $timestamps = true;
-    protected $guarded=[];
+    protected $guarded = [];
+
     public static function get_information($ysq)
     {
         try {
@@ -38,11 +39,12 @@ class Application extends Model//报名系统界面
             return false;
         }
     }
+
     /**
      * 从表单数据中查找成员信息
-     * @author yangsiqi<github.com/Double-R111>
-     * @var string
      * @return boolean
+     * @var string
+     * @author yangsiqi<github.com/Double-R111>
      */
     public static function getMembersInformation()//成员信息获取
     {
@@ -56,12 +58,13 @@ class Application extends Model//报名系统界面
             return false;
         }
     }
+
     /**
      * 通过学号或姓名查找需要审核的新成员信息
-     * @author yangsiqi<github.com/Double-R111>
      * @param  $ysq
-     * @var string
      * @return boolean
+     * @var string
+     * @author yangsiqi<github.com/Double-R111>
      */
     public static function inquireMember($ysq)
     {
@@ -78,22 +81,22 @@ class Application extends Model//报名系统界面
 
     /**
      * 添加为新成员即通过审核
-     * * @author yangsiqi<github.com/Double-R111>
-     * @param $ysq
+     * * @param $ysq
      * @return false
+     * @author yangsiqi<github.com/Double-R111>
      */
     public static function addMembersFindInsert($ysq)
     {
         try {
             $date = self::where('application_id', $ysq['application_id'])
                 ->first();
-            if ($date!=null){
+            if ($date != null) {
                 UserInformation::insert([
                     'information_id' => $date['application_id'],
                     'name' => $date['name'],
                     'sex' => $date['sex'],
                     'email' => $date['email'],
-                    'class'=>$date['class'],
+                    'class' => $date['class'],
                     'produce' => $date['self_introduce']
                 ]);
             }

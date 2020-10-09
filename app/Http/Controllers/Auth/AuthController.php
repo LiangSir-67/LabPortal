@@ -14,25 +14,26 @@ class AuthController extends Controller
         try {
             $credentials = self::credentials($loginRequest);
             if (!$token = auth()->attempt($credentials)) {
-                return json_fail('账号或者用户名错误!',null, 100 );
-            }else{
+                return json_fail('账号或者用户名错误!', null, 100);
+            } else {
                 $login_id = auth()->user()->login_id;
                 $res = Login::updateDate($login_id);
-                 if($res!=null){
-                  return json_success('登陆成功！',array(
-                      'token' => $token,
-                      'token_type' =>'bearer',
-                      'expires_in' => auth()->factory()->getTTL() * 60
-                  ),200);
-                 }else{
-                     $this->logout();
-                     return  json_fail("登陆失败!",null,500);
-                 }
+                if ($res != null) {
+                    return json_success('登陆成功！', array(
+                        'token' => $token,
+                        'token_type' => 'bearer',
+                        'expires_in' => auth()->factory()->getTTL() * 60
+                    ), 200);
+                } else {
+                    $this->logout();
+                    return json_fail("登陆失败!", null, 500);
+                }
             }
         } catch (\Exception $e) {
-            return json_fail('登陆失败!',$e->getMessage(),500,500);
+            return json_fail('登陆失败!', $e->getMessage(), 500, 500);
         }
     }
+
     public function logout()
     {
         try {
@@ -40,18 +41,19 @@ class AuthController extends Controller
         } catch (\Exception $e) {
         }
         return auth()->check() ?
-            json_fail('注销登陆失败!',null, 100 ) :
-            json_success('注销登陆成功!',null,  200);
+            json_fail('注销登陆失败!', null, 100) :
+            json_success('注销登陆成功!', null, 200);
     }
+
     public function refresh()
     {
         try {
-           $newToken = auth()->refresh();
+            $newToken = auth()->refresh();
         } catch (\Exception $e) {
         }
         return $newToken != null ?
             self::respondWithToken($newToken, '刷新成功!') :
-            json_fail(100, null,'刷新token失败!');
+            json_fail(100, null, '刷新token失败!');
     }
 
     protected function credentials($request)
@@ -63,12 +65,14 @@ class AuthController extends Controller
     {
         return json_success($msg, array(
             'token' => $token,
-            'token_type' =>'bearer',
+            'token_type' => 'bearer',
             'expires_in' => auth()->factory()->getTTL() * 60
-        ),200);
+        ), 200);
     }
-    public function test(Request $request){
-        $user  = auth('api')->user();
+
+    public function test(Request $request)
+    {
+        $user = auth('api')->user();
 
         echo $user->work_id;
     }
@@ -76,10 +80,11 @@ class AuthController extends Controller
     public function registered(Request $registeredRequest)
     {
         return Login::createUser(self::userHandle($registeredRequest)) ?
-            json_success('注册成功!',null,200  ) :
-            json_success('注册失败!',null,100  ) ;
+            json_success('注册成功!', null, 200) :
+            json_success('注册失败!', null, 100);
 
     }
+
     protected function userHandle($request)
     {
         $registeredInfo = $request->except('password_confirmation');

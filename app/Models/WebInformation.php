@@ -20,14 +20,14 @@ class WebInformation extends Model
     public static function zc_update($zc)
     {
         try {
-            if(!$zc['sc_name'])
+            if (!$zc['sc_name'])
                 $zc['sc_name'] = "成都东软学院";
-            self::where('id',1)
+            self::where('id', 1)
                 ->update([
-                    'sc_name'=>$zc['sc_name'],
-                    'name'=>$zc['name'],
-                    'title'=>$zc['title'],
-                    'footer'=>$zc['footer']
+                    'sc_name' => $zc['sc_name'],
+                    'name' => $zc['name'],
+                    'title' => $zc['title'],
+                    'footer' => $zc['footer']
                 ]);
             return true;
         } catch (\Exception $e) {

@@ -18,13 +18,14 @@ class Link extends Model
      * @auther ZhongChun <github.com/RobbEr929>
      * return [string]
      */
-    public static function zc_show(){
+    public static function zc_show()
+    {
         try {
-            $zc = self::orderBy('priority','asc')
+            $zc = self::orderBy('priority', 'asc')
                 ->get();
             return $zc;
-        }catch (\Exception $e){
-            logError('搜索失败',[$e->getMessage()]);
+        } catch (\Exception $e) {
+            logError('搜索失败', [$e->getMessage()]);
         }
     }
 
@@ -33,14 +34,15 @@ class Link extends Model
      * @auther ZhongChun <github.com/RobbEr929>
      * @param [string]
      */
-    public static function zc_delete($zc){
+    public static function zc_delete($zc)
+    {
         try {
-            self::where('link_id',$zc['link_id'])
+            self::where('link_id', $zc['link_id'])
                 ->delete();
             return true;
-        }catch (\Exception $e){
-            logError('搜索失败',[$e->getMessage()]);
-            return  null;
+        } catch (\Exception $e) {
+            logError('搜索失败', [$e->getMessage()]);
+            return null;
         }
     }
 
@@ -49,19 +51,20 @@ class Link extends Model
      * @auther ZhongChun <github.com/RobbEr929>
      * @param [string]
      */
-    public static function zc_update($zc){
+    public static function zc_update($zc)
+    {
         try {
-            Link::where('link_id',$zc['link_id'])
+            Link::where('link_id', $zc['link_id'])
                 ->update([
-                    'name'=>$zc['name'],
-                    'produce'=> $zc['produce'],
-                    'priority'=> $zc['priority'],
-                    'tx_url'=> $zc['tx_url'],
-                    'blog_url'=> $zc['blog_url']
+                    'name' => $zc['name'],
+                    'produce' => $zc['produce'],
+                    'priority' => $zc['priority'],
+                    'tx_url' => $zc['tx_url'],
+                    'blog_url' => $zc['blog_url']
                 ]);
             return true;
-        }catch (\Exception $e){
-            logError('搜索失败',[$e->getMessage()]);
+        } catch (\Exception $e) {
+            logError('搜索失败', [$e->getMessage()]);
         }
     }
 
@@ -70,7 +73,8 @@ class Link extends Model
      * @auther ZhongChun <github.com/RobbEr929>
      * @param [string]
      */
-    public static function zc_insert($zc){
+    public static function zc_insert($zc)
+    {
         try {
             Link::create([
                 'name' => $zc['name'],
@@ -80,26 +84,26 @@ class Link extends Model
                 'blog_url' => $zc['blog_url']
             ]);
             return true;
-        }catch (\Exception $e){
-            logError('搜索失败',[$e->getMessage()]);
+        } catch (\Exception $e) {
+            logError('搜索失败', [$e->getMessage()]);
         }
     }
 
     /**
      * 返回名字，博客url，图片url，简介
-     * @author tangbangyan <github.com/doublebean>
      * @return mixed
+     * @author tangbangyan <github.com/doublebean>
      */
     public static function tby_getFriendContet()
     {
-        try{
-            $date=self::select('name','tx_url','blog_url','produce')
-                ->orderby('priority','asc')
+        try {
+            $date = self::select('name', 'tx_url', 'blog_url', 'produce')
+                ->orderby('priority', 'asc')
                 ->get();
 
             return $date;
-        }catch(Exception $e){
-            logger::Error('没找到优秀成员信息',[$e->getMessage()]);
+        } catch (Exception $e) {
+            logger::Error('没找到优秀成员信息', [$e->getMessage()]);
         }
     }
 }

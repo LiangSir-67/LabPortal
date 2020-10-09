@@ -10,9 +10,9 @@ class ApplicationStatusController extends Controller //报名系统状态控制
 {
     /**
      * 获取当前报名系统状态
-     * @author yangsiqi<github.com/Double-R111>
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
+     * @author yangsiqi<github.com/Double-R111>
      */
     public function registStatus()
     {
@@ -24,9 +24,9 @@ class ApplicationStatusController extends Controller //报名系统状态控制
 
     /**
      * 改变当前报名系统状态
-     * @author yangsiqi<github.com/Double-R111>
      * @param $request
      * @return \Illuminate\Http\JsonResponse
+     * @author yangsiqi<github.com/Double-R111>
      */
     public function setStatus($request)
     {

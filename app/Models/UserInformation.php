@@ -10,64 +10,66 @@ class UserInformation extends Model
     public $timestamps = true;
     protected $primaryKey = 'id';
     protected $fillable = ['information_id'];
-      /**
+
+    /**
      * 展示成员
-     * @author Chenqiuxiang <github.com/Varsion>
      * @return $data
+     * @author Chenqiuxiang <github.com/Varsion>
      */
-    public static function showMember(){
-        $data =  self::join('login','information_id','login_id')
-            ->select('information_id','nichen','name','sex','login_date','login_status')
+    public static function showMember()
+    {
+        $data = self::join('login', 'information_id', 'login_id')
+            ->select('information_id', 'nichen', 'name', 'sex', 'login_date', 'login_status')
             ->get();
 
-         return $data;
+        return $data;
 
     }
-      /**
+
+    /**
      * 根据昵称或者账号查询成员
-     * @author Chenqiuxiang <github.com/Varsion>
      * @param nichen=>昵称，information_id=>账号
      * @return $data
+     * @author Chenqiuxiang <github.com/Varsion>
      */
-    public static function queryMember($nichen,$information_id){
+    public static function queryMember($nichen, $information_id)
+    {
         // dd($information_id);
         // dd($nichen);
-        if($nichen!=null){
-        $data=self::join('login','information_id','login_id')
-            ->select('information_id','nichen','name','sex','login_date')
-            ->where('nichen',$nichen)
-            ->get();
+        if ($nichen != null) {
+            $data = self::join('login', 'information_id', 'login_id')
+                ->select('information_id', 'nichen', 'name', 'sex', 'login_date')
+                ->where('nichen', $nichen)
+                ->get();
             return $data;
-        }
-        else
-        {
-            $data=self::join('login','information_id','login_id')
-            ->select('information_id','nichen','name','sex','login_date')
-            ->where('information_id',$information_id)
-            ->get();
+        } else {
+            $data = self::join('login', 'information_id', 'login_id')
+                ->select('information_id', 'nichen', 'name', 'sex', 'login_date')
+                ->where('information_id', $information_id)
+                ->get();
             return $data;
         }
 
     }
+
     /**
      * 根据传入的参数存入数据库
-     * @author Chenqiuxiang <github.com/Varsion>
      * @param $login_id
      * @return json
+     * @author Chenqiuxiang <github.com/Varsion>
      */
     public static function insertInfromation($login_id)
     {
-        try{
-            $res=self::insert(
+        try {
+            $res = self::insert(
                 [
-                     'information_id'=>$login_id,
+                    'information_id' => $login_id,
                 ]
-                );
-         return json_success(200,"插入成功",null);
-        }
-        catch(\Exception $e){
-           logError("插入失败",[$e -> getMessage()]);
-            return json_fail(100,"插入失败",null);
+            );
+            return json_success(200, "插入成功", null);
+        } catch (\Exception $e) {
+            logError("插入失败", [$e->getMessage()]);
+            return json_fail(100, "插入失败", null);
         }
     }
 }

@@ -22,7 +22,7 @@ class Teacher extends Model
     public static function zc_show()
     {
         try {
-            $res = Teacher::orderBy('priority','asc')
+            $res = Teacher::orderBy('priority', 'asc')
                 ->get();
             return $res;
         } catch (\Exception $e) {
@@ -38,7 +38,7 @@ class Teacher extends Model
     public static function zc_delete($zc)
     {
         try {
-            $res = Teacher::where('id',$zc['id'])
+            $res = Teacher::where('id', $zc['id'])
                 ->delete();
             return true;
         } catch (\Exception $e) {
@@ -55,13 +55,13 @@ class Teacher extends Model
     {
         try {
             $zc['updated_at'] = Carbon::now()->toDateTimeString();
-            $res = Teacher::where('id',$zc['id'])
+            $res = Teacher::where('id', $zc['id'])
                 ->update([
-                    'name'=>$zc['name'],
-                    'profession'=>$zc['profession'],
-                    't_url'=>$zc['t_url'],
-                    't_bridf'=>$zc['t_bridf'],
-                    'priority'=>$zc['priority'],
+                    'name' => $zc['name'],
+                    'profession' => $zc['profession'],
+                    't_url' => $zc['t_url'],
+                    't_bridf' => $zc['t_bridf'],
+                    'priority' => $zc['priority'],
                     'updated_at' => $zc['updated_at']
                 ]);
             return true;
@@ -81,11 +81,11 @@ class Teacher extends Model
             $zc['created_at'] = Carbon::now()->toDateTimeString();
             $zc['updated_at'] = $zc['created_at'];
             $res = Teacher::insert([
-                'name'=>$zc['name'],
-                'profession'=>$zc['profession'],
-                't_url'=>$zc['t_url'],
-                't_bridf'=>$zc['t_bridf'],
-                'priority'=>$zc['priority'],
+                'name' => $zc['name'],
+                'profession' => $zc['profession'],
+                't_url' => $zc['t_url'],
+                't_bridf' => $zc['t_bridf'],
+                'priority' => $zc['priority'],
                 'created_at' => $zc['created_at'],
                 'updated_at' => $zc['updated_at']
             ]);
@@ -97,20 +97,20 @@ class Teacher extends Model
 
     /**
      * 返回老师名字，职称，介绍，图片
-     * @author tangbangyan <github.com/doublebean>
      * @return mixed
+     * @author tangbangyan <github.com/doublebean>
      */
     public static function tby_getTeacherContent()
     {
-        try{
+        try {
 
-            $date = self::select('name','profession','t_url','t_bridf')
-                ->orderby('priority','asc')
+            $date = self::select('name', 'profession', 't_url', 't_bridf')
+                ->orderby('priority', 'asc')
                 ->get();
 
             return $date;
-        }catch(Exception $e){
-            logger::Error('没找到该图片',[$e->getMessage()]);
+        } catch (Exception $e) {
+            logger::Error('没找到该图片', [$e->getMessage()]);
         }
     }
 }

@@ -23,16 +23,16 @@ class Labor extends Model
     {
         try {
             $zc['updated_at'] = Carbon::now()->toDateTimeString();
-            self::where('labor_id',1)
+            self::where('labor_id', 1)
                 ->update([
-                    'produce'=>$zc['produce'],
-                    'pro_url'=>$zc['pro_url'],
-                    'enviroment'=>$zc['enviroment'],
-                    'env_url'=>$zc['env_url'],
-                    'architect'=>$zc['architect'],
-                    'arc_url'=>$zc['arc_url'],
-                    'direction'=>$zc['direction'],
-                    'dir_url'=>$zc['dir_url']
+                    'produce' => $zc['produce'],
+                    'pro_url' => $zc['pro_url'],
+                    'enviroment' => $zc['enviroment'],
+                    'env_url' => $zc['env_url'],
+                    'architect' => $zc['architect'],
+                    'arc_url' => $zc['arc_url'],
+                    'direction' => $zc['direction'],
+                    'dir_url' => $zc['dir_url']
                 ]);
             return true;
         } catch (\Exception $e) {
@@ -43,64 +43,65 @@ class Labor extends Model
 
     /**
      * 提供在labor表中的实验室介绍，和实验室介绍图片数据
-     * @author tangbangyan <github.com/doublebean>
      * @return mixed
+     * @author tangbangyan <github.com/doublebean>
      */
     public static function tby_getLabContent()
     {
-        try{
-            $date=self::select('produce','pro_url')
+        try {
+            $date = self::select('produce', 'pro_url')
                 ->get();
             return $date;
-        }catch(Exception $e){
-            logger::Error('没找到实验室介绍图片和内容',[$e->getMessage()]);
+        } catch (Exception $e) {
+            logger::Error('没找到实验室介绍图片和内容', [$e->getMessage()]);
         }
     }
+
     /**
      * 提供在labor表中的实验室环境内容和图片数据
-     * @author tangbangyan <github.com/doublebean>
      * @return mixed
+     * @author tangbangyan <github.com/doublebean>
      */
     public static function tby_getLabEnvironment()
     {
-        try{
-            $date=self::select('enviroment','env_url')
+        try {
+            $date = self::select('enviroment', 'env_url')
                 ->get();
             return $date;
-        }catch(Exception $e){
-            logger::Error('没找到环境介绍图片和内容',[$e->getMessage()]);
+        } catch (Exception $e) {
+            logger::Error('没找到环境介绍图片和内容', [$e->getMessage()]);
         }
     }
-  
+
     /**
      * 提供在labor表中的实验室架构内容和图片数据
-     * @author tangbangyan <github.com/doublebean>
      * @return mixed
+     * @author tangbangyan <github.com/doublebean>
      */
     public static function tby_getLabOrganization()
     {
-        try{
-            $date=self::select('architect','arc_url')
+        try {
+            $date = self::select('architect', 'arc_url')
                 ->get();
             return $date;
-        }catch(Exception $e){
-            logger::Error('没找到架构介绍图片和内容',[$e->getMessage()]);
+        } catch (Exception $e) {
+            logger::Error('没找到架构介绍图片和内容', [$e->getMessage()]);
         }
     }
-  
+
     /**
      * 提供在labor表中的实验室方向内容和图片数据
-     * @author tangbangyan <github.com/doublebean>
      * @return mixed
+     * @author tangbangyan <github.com/doublebean>
      */
     public static function tby_getLabDirection()
     {
-        try{
-            $date=self::select('direction','dir_url')
+        try {
+            $date = self::select('direction', 'dir_url')
                 ->get();
             return $date;
-        }catch(Exception $e){
-            logger::Error('没找到实验室介绍图片和内容',[$e->getMessage()]);
+        } catch (Exception $e) {
+            logger::Error('没找到实验室介绍图片和内容', [$e->getMessage()]);
         }
     }
 }

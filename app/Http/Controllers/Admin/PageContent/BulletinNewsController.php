@@ -16,13 +16,13 @@ class BulletinNewsController extends Controller
      * @auther ZhongChun <github.com/RobbEr929>
      * @return json
      */
-    public static function show(){
+    public static function show()
+    {
         $res = NewsBulletinManage::zc_show();
-        if($res){
-            return json_success('展示成功!',$res,200);
-        }
-        else{
-            return json_fail('展示失败!',null,100);
+        if ($res) {
+            return json_success('展示成功!', $res, 200);
+        } else {
+            return json_fail('展示失败!', null, 100);
         }
     }
 
@@ -32,14 +32,14 @@ class BulletinNewsController extends Controller
      * @param OperationRequest $request
      * @return json
      */
-    public static function operation(OperationRequest $request){
+    public static function operation(OperationRequest $request)
+    {
         $zc = $request;
         $res = NewsBulletinManage::zc_operation($zc);
-        if($res){
-            return json_success('操作成功!',null,200);
-        }
-        else{
-            return json_fail('操作失败!',null,100);
+        if ($res) {
+            return json_success('操作成功!', null, 200);
+        } else {
+            return json_fail('操作失败!', null, 100);
         }
     }
 
@@ -49,14 +49,14 @@ class BulletinNewsController extends Controller
      * @param SelectRequest $request
      * @return json
      */
-    public static function select(SelectRequest $request){
+    public static function select(SelectRequest $request)
+    {
         $zc = $request;
         $res = NewsBulletinManage::zc_select($zc);
-        if($res){
-            return json_success('搜索成功',$res,200);
-        }
-        else{
-            return json_fail('搜索失败!',null,100);
+        if ($res) {
+            return json_success('搜索成功', $res, 200);
+        } else {
+            return json_fail('搜索失败!', null, 100);
         }
     }
 
@@ -66,13 +66,14 @@ class BulletinNewsController extends Controller
      * @param EditRequest $request
      * @return json
      */
-    public static function edit(EditRequest $request){
+    public static function edit(EditRequest $request)
+    {
         $zc = $request;
         $res = NewsBulletinManage::zc_edit($zc);
-        if($res){
+        if ($res) {
             return json_success('搜索成功!', $res, 200);
-        }else{
-            return json_fail('搜索失败!',null,100);
+        } else {
+            return json_fail('搜索失败!', null, 100);
         }
     }
 }

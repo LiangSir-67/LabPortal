@@ -11,14 +11,14 @@ class SelfInformationController extends Controller //报名申请页面
 {
     /**
      * 提交个人信息
-     * @author yangsiqi<github.com/Double-R111>
      * @param ApplicationRequest $request
      * @return \Illuminate\Http\JsonResponse
+     * @author yangsiqi<github.com/Double-R111>
      */
     public function selfInformation(ApplicationRequest $request)//个人信息提交
     {
         $re = [
-            'application_id'=>$request['application_id'],
+            'application_id' => $request['application_id'],
             'name' => $request['name'],
             'sex' => $request['sex'],
             'class' => $request['class'],

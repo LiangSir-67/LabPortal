@@ -18,9 +18,9 @@ class EmailConfirmController extends Controller //发送验证邮箱
 {
     /**
      * 发送确认邮件
-     * @author yangsiqi<github.com/Double-R111>
      * @param $abc
      * @return \Illuminate\Http\JsonResponse
+     * @author yangsiqi<github.com/Double-R111>
      */
     public static function emailConfirm($abc)
     {

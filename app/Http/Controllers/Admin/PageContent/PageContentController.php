@@ -1,6 +1,6 @@
 <?php
 
-namespace  app\Http\Controllers\Admin\PageContent;
+namespace app\Http\Controllers\Admin\PageContent;
 
 use App\Http\Controllers\Controller;
 use App\Models\NewsBulletinManage;
@@ -16,20 +16,21 @@ class PageContentController extends Controller
      * @param AddContentToSqlRequest $request
      * @return json
      */
-    public function addContentToSql(AddContentToSqlRequest $request){
+    public function addContentToSql(AddContentToSqlRequest $request)
+    {
         $zc = $request;
         $res1 = Content::zc_insert($zc);
         $res2 = NewsBulletinManage::zc_insert($zc);
-        if($res1==true&&$res2==true){
-            return json_success('内容发布成功!',null,200);
-        }else{
-            if(!$res1){
+        if ($res1 == true && $res2 == true) {
+            return json_success('内容发布成功!', null, 200);
+        } else {
+            if (!$res1) {
                 NewsBulletinManage::zc_delete(Content::zc_getid());
             }
-            if(!$res2){
+            if (!$res2) {
                 Content::zc_delete(NewsBulletinManage::zc_getid());
             }
-            return json_fail('内容发布失败!',null,100);
+            return json_fail('内容发布失败!', null, 100);
         }
     }
 }

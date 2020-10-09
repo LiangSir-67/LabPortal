@@ -13,8 +13,8 @@ class ApplicationManagerController extends Controller //报名成员信息管理
 {
     /**
      * 成员报名信息管理
-     * @author yangsiqi<github.com/Double-R111>
      * @return \Illuminate\Http\JsonResponse
+     * @author yangsiqi<github.com/Double-R111>
      */
     public function showMembers()//成员信息展示
     {
@@ -26,9 +26,9 @@ class ApplicationManagerController extends Controller //报名成员信息管理
 
     /**
      * 通过学号姓名查找并插入user_information表
-     * @author yangsiqi<github.com/Double-R111>
      * @param AddInquireMembersRequest $request
      * @return \Illuminate\Http\JsonResponse\
+     * @author yangsiqi<github.com/Double-R111>
      */
     public function inquireMembers(AddInquireMembersRequest $request)
     {
@@ -41,9 +41,9 @@ class ApplicationManagerController extends Controller //报名成员信息管理
 
     /**
      * 添加为新成员
-     * @author yangsiqi<github.com/Double-R111>
      * @param AddInquireMembersRequest $request
      * @return \Illuminate\Http\JsonResponse
+     * @author yangsiqi<github.com/Double-R111>
      */
     public function addMembers(AddInquireMembersRequest $request)//添加为新成员
     {

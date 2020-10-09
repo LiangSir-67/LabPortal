@@ -1,14 +1,8 @@
 <?php
 
 namespace App\Models;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Like;
-use App\Models\Comment;
-use App\Models\WebInformation;
-use Illuminate\Support\Facades\DB;
 use Exception;
-use App\Models\Censor;
 
 class Article extends Model
 {
@@ -121,7 +115,7 @@ class Article extends Model
             logError('搜索失败',[$e->getMessage()]);
         }
     }
-  
+
 
     /**
      * 获取文章 模糊查询

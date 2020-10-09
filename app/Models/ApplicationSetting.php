@@ -14,9 +14,9 @@ class ApplicationSetting extends Model
 
     /***
      * 得到当前报名系统状态
-     * @author yangsiqi<github.com/Double-R111>
-     * @var string
      * @return null
+     * @var string
+     * @author yangsiqi<github.com/Double-R111>
      */
     public static function getStatus()
     {
