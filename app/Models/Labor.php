@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use http\Exception;
 use Illuminate\Database\Eloquent\Model;
 
@@ -10,6 +11,34 @@ class Labor extends Model
     protected $table = "labor";
     public $timestamps = true;
     protected $primaryKey = 'labor_id';
+    protected $guarded = [];
+
+
+    /**
+     * 插入数据到表
+     * @auther ZhongChun <github.com/RobbEr929>
+     * @param [string]$zc
+     */
+    public static function zc_update($zc)
+    {
+        try {
+            $zc['updated_at'] = Carbon::now()->toDateTimeString();
+            self::where('labor_id',1)
+                ->update([
+                    'produce'=>$zc['produce'],
+                    'pro_url'=>$zc['pro_url'],
+                    'enviroment'=>$zc['enviroment'],
+                    'env_url'=>$zc['env_url'],
+                    'architect'=>$zc['architect'],
+                    'arc_url'=>$zc['arc_url'],
+                    'direction'=>$zc['direction'],
+                    'dir_url'=>$zc['dir_url']
+                ]);
+            return true;
+        } catch (\Exception $e) {
+            logError('填报错误', [$e->getMessage()]);
+        }
+    }
 
 
     /**
@@ -42,6 +71,7 @@ class Labor extends Model
             logger::Error('没找到环境介绍图片和内容',[$e->getMessage()]);
         }
     }
+  
     /**
      * 提供在labor表中的实验室架构内容和图片数据
      * @author tangbangyan <github.com/doublebean>
@@ -57,6 +87,7 @@ class Labor extends Model
             logger::Error('没找到架构介绍图片和内容',[$e->getMessage()]);
         }
     }
+  
     /**
      * 提供在labor表中的实验室方向内容和图片数据
      * @author tangbangyan <github.com/doublebean>
@@ -72,6 +103,4 @@ class Labor extends Model
             logger::Error('没找到实验室介绍图片和内容',[$e->getMessage()]);
         }
     }
-
-
 }

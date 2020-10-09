@@ -636,16 +636,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v6.18.40",
+            "version": "v6.18.41",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "e42450df0896b7130ccdb5290a114424e18887c9"
+                "reference": "bc5a1cf4252e36da4e260bd371b288998beddf63"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/e42450df0896b7130ccdb5290a114424e18887c9",
-                "reference": "e42450df0896b7130ccdb5290a114424e18887c9",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/bc5a1cf4252e36da4e260bd371b288998beddf63",
+                "reference": "bc5a1cf4252e36da4e260bd371b288998beddf63",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -787,7 +787,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2020-09-09T15:02:20+00:00"
+            "time": "2020-09-29T14:38:41+00:00"
         },
         {
             "name": "laravel/tinker",
@@ -5801,16 +5801,16 @@
         },
         {
             "name": "phpspec/prophecy",
-            "version": "1.11.1",
+            "version": "1.12.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpspec/prophecy.git",
-                "reference": "b20034be5efcdab4fb60ca3a29cba2949aead160"
+                "reference": "8ce87516be71aae9b956f81906aaf0338e0d8a2d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpspec/prophecy/zipball/b20034be5efcdab4fb60ca3a29cba2949aead160",
-                "reference": "b20034be5efcdab4fb60ca3a29cba2949aead160",
+                "url": "https://api.github.com/repos/phpspec/prophecy/zipball/8ce87516be71aae9b956f81906aaf0338e0d8a2d",
+                "reference": "8ce87516be71aae9b956f81906aaf0338e0d8a2d",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -5821,14 +5821,14 @@
             },
             "require": {
                 "doctrine/instantiator": "^1.2",
-                "php": "^7.2",
-                "phpdocumentor/reflection-docblock": "^5.0",
+                "php": "^7.2 || ~8.0, <8.1",
+                "phpdocumentor/reflection-docblock": "^5.2",
                 "sebastian/comparator": "^3.0 || ^4.0",
                 "sebastian/recursion-context": "^3.0 || ^4.0"
             },
             "require-dev": {
                 "phpspec/phpspec": "^6.0",
-                "phpunit/phpunit": "^8.0"
+                "phpunit/phpunit": "^8.0 || ^9.0 <9.3"
             },
             "type": "library",
             "extra": {
@@ -5866,7 +5866,7 @@
                 "spy",
                 "stub"
             ],
-            "time": "2020-07-08T12:44:21+00:00"
+            "time": "2020-09-29T09:10:42+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
