@@ -1,12 +1,14 @@
 <?php
 
-namespace App\Http\Requests\Admin;
+namespace App\Http\Requests\Admin\MemberManage;
+
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
-class TestRequest extends FormRequest
+class ApplicationRequest extends FormRequest
 {
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -26,13 +28,13 @@ class TestRequest extends FormRequest
     {
         return [
             'name' => 'required|alpha',
-            'tel'  => 'required|numeric|max:11'
+            'sex' => 'required',
+            'email' => 'required|email',
+            'class' => 'required|alpha_num',
+            'self_introduce' => 'max:100'
         ];
     }
 
-    /**
-     * @param Validator $validator
-     */
     protected function failedValidation(Validator $validator)
     {
         throw (new HttpResponseException(json_fail(422, '参数错误!', $validator->errors()->all(), 422)));

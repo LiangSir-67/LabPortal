@@ -1,5 +1,5 @@
 <?php
-
+use Illuminate\Foundation\Facades;
 /*
 |--------------------------------------------------------------------------
 | Broadcast Channels
