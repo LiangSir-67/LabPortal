@@ -10,15 +10,16 @@ class UserInformation extends Model
     public $timestamps = true;
     protected $primaryKey = 'id';
     protected $fillable = ['information_id'];
-
+    //展示成员
     public static function showMember(){
         $data =  self::join('login','information_id','login_id')
             ->select('information_id','nichen','name','sex','login_date','login_status')
             ->get();
-        
+
          return $data;
 
     }
+    //查询成员
     public static function queryMember($nichen,$information_id){
         // dd($information_id);
         // dd($nichen);
@@ -37,8 +38,9 @@ class UserInformation extends Model
             ->get();
             return $data;
         }
-      
+
     }
+    //插入成员
     public static function insertInfromation($login_id)
     {
         try{

@@ -9,6 +9,7 @@ use App\Models\Login;
 use App\Models\UserInformation;
 class OperateController extends Controller
 {
+    //插入成员
     public function insertMember(request $request){
         $login_id=$request['user_id'];
         $password=$request['user_password'];
@@ -23,14 +24,8 @@ class OperateController extends Controller
         return $result;
         return $res;
     }
-     public function selectAll(){
-        $data = Login::selectAll();
-        if(count($data)){
-            return json_success("成功",$data,200);
-        }else{
-            return json_fail("失败",null,100);
-        }
-    }
+
+    //展示成员
     public function showMember(){
         $data=UserInformation::showMember();
         // dd($data);
@@ -42,6 +37,7 @@ class OperateController extends Controller
         }
 
     }
+    //查询成员
     public function queryMember(request $request){
     $nichen=$request['nichen'];
     $information_id=$request['user_id'];
@@ -52,7 +48,7 @@ class OperateController extends Controller
         return json_fail("查询数据失败",null,100);
     }
   }
-
+     //修改状态
     public function modifyMember(request $request){
         $login_id=$request['user_id'];
         $login_status=$request['user_status'];

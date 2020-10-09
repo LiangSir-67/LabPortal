@@ -62,11 +62,7 @@ class Login extends \Illuminate\Foundation\Auth\User implements JWTSubject,Authe
     }
 
 
-    public static function selectAll(){
-        return Login::all();
-    }
-
-
+    //插入成员
     public static function insertMember($login_id,$password){
     try{
         $res=self::insert(
@@ -83,8 +79,7 @@ class Login extends \Illuminate\Foundation\Auth\User implements JWTSubject,Authe
         return json_fail(100,"插入失败",null);
     }
 }
-
-
+     //修改成员状态
     public static function modifyMember($login_id,$login_status){
         try{
            if($login_status==1){
