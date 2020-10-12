@@ -80,8 +80,9 @@ class Comment extends Model
      */
     public static function zxl_deleteComment($value)
     {
+        $res = null;
         try {
-            $res = self::where('comment_id', '=', $value)->forceDelete();
+            $res = self::where('comment_id', '=', $value)->delete();
             return $res;
         } catch (Exception $e) {
             logError('删除评论失败！', null, '状态时失败', [$e->getMessage()]);

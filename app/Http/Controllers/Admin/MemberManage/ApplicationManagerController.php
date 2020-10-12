@@ -34,7 +34,7 @@ class ApplicationManagerController extends Controller //报名成员信息管理
     {
         $ysq = $request;
         $ans = Application::inquireMember($ysq);
-        return $ans ?
+        return $ans != null?
             json_success('找到该成员', $ans, '200') :
             json_fail('该成员不存在', null, 100);
     }

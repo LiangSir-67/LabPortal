@@ -29,7 +29,7 @@ class Login extends \Illuminate\Foundation\Auth\User implements JWTSubject, Auth
     }
 
     /***
-     * 跟新用户登陆时间
+     * 更新用户登陆时间
      * @param $login_id
      */
     public static function updateDate($login_id)
@@ -68,24 +68,27 @@ class Login extends \Illuminate\Foundation\Auth\User implements JWTSubject, Auth
 
     /**
      * 根据传入的参数存入数据库
-     * @param $login_id ,$password
-     * @return json
+     * @param $login_id ,
+     *        $password,
+     *        $login_status
+     * @return $res
      * @author Chenqiuxiang <github.com/Varsion>
      */
-    public static function insertMember($login_id, $password)
+    public static function insertMember($login_id, $password, $login_status)
     {
         try {
-            $res = self::insert(
+            $res = self::create(
                 [
+                    'login_status' => $login_status,
+                    'login_date' => now(),
                     'login_id' => $login_id,
                     'password' => $password,
-                    'login_date' => now(),
                 ]
             );
-            return json_success(200, "插入成功", null);
+            return $res;
         } catch (\Exception $e) {
-            logError("插入失败", [$e->getMessage()]);
-            return json_fail(100, "插入失败", null);
+            logError("插入异常！", [$e->getMessage()]);
+            return null;
         }
     }
 
@@ -100,14 +103,13 @@ class Login extends \Illuminate\Foundation\Auth\User implements JWTSubject, Auth
         try {
             if ($login_status == 1) {
                 $res = self::where('login_id', $login_id)
-                    ->update(['login_status' => 0, 'login_date' => now()]);
-
-            } else {
+                    ->update(['login_status' => 1, 'login_date' => now()]);
+                return $res;
+            } else if ($login_status == 0) {
                 $res = self::where('login_id', $login_id)
-                    ->update(['login_status' => 1, 'login_date' => now()])
-                    ->get();
+                    ->update(['login_status' => 0, 'login_date' => now()]);
+                return $res;
             }
-            return $res;
         } catch (\Exception $e) {
             logError("插入失败", [$e->getMessage()]);
             return json_fail(100, "插入失败", null);

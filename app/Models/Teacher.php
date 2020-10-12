@@ -40,7 +40,9 @@ class Teacher extends Model
         try {
             $res = Teacher::where('id', $zc['id'])
                 ->delete();
-            return true;
+            return $res == 1?
+                true:
+                false;
         } catch (\Exception $e) {
             logError('删除错误', [$e->getMessage()]);
         }
@@ -62,9 +64,10 @@ class Teacher extends Model
                     't_url' => $zc['t_url'],
                     't_bridf' => $zc['t_bridf'],
                     'priority' => $zc['priority'],
-                    'updated_at' => $zc['updated_at']
                 ]);
-            return true;
+            return $res == 1?
+                true:
+                false;
         } catch (\Exception $e) {
             logError('修改错误', [$e->getMessage()]);
         }

@@ -106,9 +106,7 @@ class CommunityController extends Controller
     public function deleteComment(DeleteCommentRequest $request)
     {
         $cmtid = $request->all();
-        //dd($cmtid['comment_id']);
         $res = Comment::zxl_deleteComment($cmtid['comment_id']);
-        dd($res);
         return $res ?
             json_success('删除评论成功！', null, 200) :
             json_fail('删除评论失败！', null, 100);

@@ -26,7 +26,7 @@ class DeleteCommentRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'comment_id' => 'required'
         ];
     }
 

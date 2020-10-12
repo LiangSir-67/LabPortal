@@ -30,9 +30,10 @@ Route::prefix('admin/membermanager')->namespace('Admin\MemberManage')->group(fun
     Route::post('registstatus', 'ApplicationStatusController@registStatus');
     Route::post('addmembers', 'ApplicationManagerController@addMembers');
     Route::post('inquiremembers', 'ApplicationManagerController@inquireMembers');
-    Route::post('showmembers', 'ApplicationManagerController@showMembers');
+    Route::get('showmembers', 'ApplicationManagerController@showMembers');
     Route::post('selfinformation', 'SelfInformationController@selfInformation');
-    Route::get('emailconfirm', 'EmailConfirmController@emailConfirm');
+    Route::post('setstatus','ApplicationStatusController@setStatus');
+    Route::post('emailconfirm', 'EmailConfirmController@emailConfirm');
 });
 
 

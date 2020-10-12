@@ -14,6 +14,7 @@ class Article extends Model
 
     /**
      * 搜索表中点赞最高
+     * @auther ZhongChun <github.com/RobbEr929>
      * return [string]
      */
     public static function zc_point(){
@@ -30,6 +31,7 @@ class Article extends Model
 
     /**
      * 搜索表中评论最高
+     * @auther ZhongChun <github.com/RobbEr929>
      * return [string]
      */
     public static function zc_comment(){
@@ -55,6 +57,7 @@ class Article extends Model
 
     /**
      * 返回网站的数据
+     * @auther ZhongChun <github.com/RobbEr929>
      * return [string]
      */
     public static function zc_web(){
@@ -70,6 +73,7 @@ class Article extends Model
 
     /**
      * 返回注册的数据
+     * @auther ZhongChun <github.com/RobbEr929>
      * return [string]
      */
     public static function zc_register(){
@@ -83,6 +87,7 @@ class Article extends Model
 
     /**
      * 返回文章总量的数据
+     * @auther ZhongChun <github.com/RobbEr929>
      * return [string]
      */
     public static function zc_total(){
@@ -96,6 +101,7 @@ class Article extends Model
 
     /**
      * 返回关键词的数据
+     * @auther ZhongChun <github.com/RobbEr929>
      * return [string]
      */
     public static function zc_totalWord(){

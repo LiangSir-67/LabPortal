@@ -40,7 +40,9 @@ class GoodMember extends Model
         try {
             $res = GoodMember::where('member_id', $zc['member_id'])
                 ->delete();
-            return true;
+            return $res == 1?
+                true:
+                false;
         } catch (\Exception $e) {
             logError('删除错误', [$e->getMessage()]);
         }
@@ -79,7 +81,7 @@ class GoodMember extends Model
         try {
             $zc['created_at'] = Carbon::now()->toDateTimeString();
             $zc['updated_at'] = $zc['created_at'];
-            $res = Teacher::insert([
+            $res = GoodMember::insert([
                 'name' => $zc['name'],
                 'gm_bridf' => $zc['gm_bridf'],
                 'member_url' => $zc['member_url'],
@@ -90,6 +92,7 @@ class GoodMember extends Model
             return true;
         } catch (\Exception $e) {
             logError('增加错误', [$e->getMessage()]);
+            return false;
         }
     }
 

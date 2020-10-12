@@ -37,9 +37,11 @@ class Link extends Model
     public static function zc_delete($zc)
     {
         try {
-            self::where('link_id', $zc['link_id'])
+            $res = self::where('link_id', $zc['link_id'])
                 ->delete();
-            return true;
+            return $res == 1?
+                true:
+                false;
         } catch (\Exception $e) {
             logError('搜索失败', [$e->getMessage()]);
             return null;
@@ -54,7 +56,7 @@ class Link extends Model
     public static function zc_update($zc)
     {
         try {
-            Link::where('link_id', $zc['link_id'])
+            $res = Link::where('link_id', $zc['link_id'])
                 ->update([
                     'name' => $zc['name'],
                     'produce' => $zc['produce'],
@@ -62,7 +64,10 @@ class Link extends Model
                     'tx_url' => $zc['tx_url'],
                     'blog_url' => $zc['blog_url']
                 ]);
-            return true;
+
+            return $res == 1?
+                true:
+                false;
         } catch (\Exception $e) {
             logError('搜索失败', [$e->getMessage()]);
         }

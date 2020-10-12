@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\MemberManage;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\MemberManage\SetStatusRequest;
 use Illuminate\Http\Request;
 use App\Models\ApplicationSetting;
 
@@ -28,12 +29,10 @@ class ApplicationStatusController extends Controller //报名系统状态控制
      * @return \Illuminate\Http\JsonResponse
      * @author yangsiqi<github.com/Double-R111>
      */
-    public function setStatus($request)
+    public function setStatus(SetStatusRequest $request)
     {
-        $status = $request->status;
-
+        $status = $request['setting_status'];
         $res = ApplicationSetting::changeStatus($status);
-
         return $res ?
             json_success('状态改变成功', null, 200) :
             json_fail('状态改变失败', null, 100);

@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Requests\Admin\CommManage;
-
-use Illuminate\Foundation\Http\FormRequest;
+namespace App\Http\Requests\Admin\MemberManage;
 
 use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
-class DeleteWordRequest extends FormRequest
+
+class SetStatusRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,12 +26,12 @@ class DeleteWordRequest extends FormRequest
     public function rules()
     {
         return [
-            'word' => 'required'
+            'setting_status' => 'required|numeric'
+            //
         ];
     }
-    protected function failedValidation(Validator $validator)
+        protected function failedValidation(Validator $validator)
     {
-         throw (new HttpResponseException(json_fail(422, '参数错误!', $validator->errors()->all())));
-        //throw (new HttpResponseException(json_fail("参数错误",$validator->errors()->all(),422)));
+        throw (new HttpResponseException(json_fail(422, '参数错误!', $validator->errors()->all(), 422)));
     }
 }

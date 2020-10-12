@@ -22,7 +22,7 @@ class EmailConfirmController extends Controller //发送验证邮箱
      * @return \Illuminate\Http\JsonResponse
      * @author yangsiqi<github.com/Double-R111>
      */
-    public static function emailConfirm($abc)
+    public static function emailConfirm(Request $abc)
     {
         $id = $abc['application_id'];
         $email = $abc['email'];
@@ -32,7 +32,7 @@ class EmailConfirmController extends Controller //发送验证邮箱
                 '您好!您正在更换邮箱，请点击下面的链接完成验证:' . '账号' . $id . '密码' . $id,
                 function ($msg) use ($email, $type_desc) {
                     $msg->from('t1577099712@163.com');
-                    $msg->subject('激活邮箱');
+                    $msg->subject($type_desc);
                     $msg->to($email);
                 }
             );

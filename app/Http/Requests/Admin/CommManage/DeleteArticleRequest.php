@@ -26,7 +26,7 @@ class DeleteArticleRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'article_id' => 'required'
         ];
     }
     protected function failedValidation(Validator $validator)

@@ -16,6 +16,8 @@ class Censor extends Model
 
     /**
      * 获取所有编号
+     * @auther ZhongChun <github.com/RobbEr929>
+     * @return mixed
      */
     public static function getNumber()
     {
@@ -49,6 +51,12 @@ class Censor extends Model
     }
 
 
+    /**
+     * 获取关键字出现次数
+     * @auther ZhongChun <github.com/RobbEr929>
+     * @param $zc
+     * @return mixed
+     */
     public static function getComNumber($zc)
     {
         try {
@@ -64,13 +72,16 @@ class Censor extends Model
     /*
      * 删除审查关键字/词
      * @author zhuxianglin <github.com/lybbor>
-     *
      * @param [type] $value
      * @return void
      */
     public static function zxl_deleteword($value)
     {
-        return self::where('word', '=', $value)->delete();
+        try {
+            return self::where('word', '=', $value)->delete();
+        } catch (Exception $e) {
+            logError('删除审查关键字失败', [$e->getMessage()]);
+        }
     }
 
     /**

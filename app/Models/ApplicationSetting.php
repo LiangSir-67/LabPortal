@@ -41,9 +41,10 @@ class ApplicationSetting extends Model
     public static function changeStatus($value)
     {
         try {
-            $res = self::update([
+            $res = ApplicationSetting::where('setting_id', 1)
+                ->update([
                 'setting_status' => $value
-            ])->where('setting_id', 1);
+            ]);
 
             return $res;
         } catch (\Exception $e) {

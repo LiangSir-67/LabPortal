@@ -49,8 +49,8 @@ class Application extends Model//报名系统界面
     public static function getMembersInformation()//成员信息获取
     {
         try {
-            $data = self::select('*')
-                ->orderby('batch_num', 'arc')
+            $data = Application::select('*')
+                ->orderby('batch_num','ASC')
                 ->get();
             return $data;
         } catch (\Exception $e) {

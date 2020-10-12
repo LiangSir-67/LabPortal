@@ -21,7 +21,6 @@ class UserInformation extends Model
         $data = self::join('login', 'information_id', 'login_id')
             ->select('information_id', 'nichen', 'name', 'sex', 'login_date', 'login_status')
             ->get();
-
         return $data;
 
     }
@@ -34,8 +33,6 @@ class UserInformation extends Model
      */
     public static function queryMember($nichen, $information_id)
     {
-        // dd($information_id);
-        // dd($nichen);
         if ($nichen != null) {
             $data = self::join('login', 'information_id', 'login_id')
                 ->select('information_id', 'nichen', 'name', 'sex', 'login_date')
@@ -55,10 +52,10 @@ class UserInformation extends Model
     /**
      * 根据传入的参数存入数据库
      * @param $login_id
-     * @return json
+     * @return $res
      * @author Chenqiuxiang <github.com/Varsion>
      */
-    public static function insertInfromation($login_id)
+    public static function insertInformation($login_id)
     {
         try {
             $res = self::insert(
@@ -66,10 +63,10 @@ class UserInformation extends Model
                     'information_id' => $login_id,
                 ]
             );
-            return json_success(200, "插入成功", null);
+            return $res;
         } catch (\Exception $e) {
             logError("插入失败", [$e->getMessage()]);
-            return json_fail(100, "插入失败", null);
+            return json_fail("插入失败", null, 100);
         }
     }
 }
