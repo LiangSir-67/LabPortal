@@ -127,16 +127,19 @@ class Content extends Model
 
     /**
      * 根据优先级返回内容，图片，标题，时间
+     * @param $class_id
      * @return mixed
      * @author tangbangyan <github.com/doublebean>
      */
-    public static function tby_getlabnewcontent()
+    public static function tby_getlabnewcontent($class_id)
     {
         try {
-            $date = self::select('title', 'neirong', 'p_url', 'created_at')
-                ->orderby('priority', 'asc')
-                ->get();
 
+            $date = self::join('news_bulletin_manage as nb', 'nb.nb_id', 'content.nb_id')
+                ->where('nb.class_id', $class_id)
+                ->select('nb.nb_id', 'content.*')
+                ->orderby('priority', 'asc')
+                ->paginate(8);
             return $date;
         } catch (Exception $e) {
             logger::Error('没找到该图片', [$e->getMessage()]);

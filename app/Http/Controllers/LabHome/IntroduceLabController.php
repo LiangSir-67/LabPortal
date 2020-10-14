@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\LabHome;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\LabHome\LabNewContentRequest;
 use App\Models\Content;
 use App\Models\GoodMember;
 use App\Models\Labor;
 use App\Models\Link;
-use App\Models\NewsBulletinManage;
 use App\Models\Teacher;
 use Illuminate\Http\Request;
 
@@ -168,19 +168,19 @@ class IntroduceLabController extends Controller
 
     /**
      * 返回聚焦实验室图片和内容,时间
-     * @return json
      * @author tangbangyan <github.com/doublebean>
+     * @return json
      */
 
-    public function getLabNewContent()
+    public function getLabNewContent(LabNewContentRequest $request)
     {
 
-        $date = Content::tby_getLabNewContent();
+        $date = Content::tby_getLabNewContent($request['class_id']);
 
-        if ($date != null) {
-            return json_success('成功', $date, 200);
+        if ($date!=null){
+            return json_success('成功',$date,200);
         }
-        return json_fail('失败', $date, 100);
+        return json_fail('失败',$date,100);
 
     }
 
@@ -201,5 +201,22 @@ class IntroduceLabController extends Controller
         return json_fail('失败', $date, 100);
 
     }
+    /**
+     * 返回友链专门的图片和内容和博客
+     * @author tangbangyan <github.com/doublebean>
+     * @return json
+     */
+    public function getFriendhomepage()
+    {
 
+        $date = Link::tby_getFriendhomepage();
+
+        if ($date!=null){
+            return json_success('成功',$date,200);
+        }
+        return json_fail('失败',$date,100);
+
+    }
 }
+
+
