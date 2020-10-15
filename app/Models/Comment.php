@@ -51,25 +51,28 @@ class Comment extends Model
      */
     public static function zxl_getCommentDetail()
     {
-        try {
-            $words = Censor::pluck('word');
+        try{
+            //先得到关键字  comment
+            $words=Censor::pluck('word');
             $datas = [];
-            for ($i = 0; $i < count($words); $i++) {
+            $flag = 0;
+            for($i = 0;$i<count($words);$i++) {
                 $word = $words[$i];
-                $res = self::select('comment_id', 'information_id', 'comment_content')
-                    ->where('comment_content', 'like', '%' . $word . '%')
-                    ->paginate(8);
-                if (!empty($res[0]->comment_content)) {
-                    for ($j = 0; $j < count($res); $j++) {
-                        $datas[$i] = $res[$j];
+                $res = self::select('comment_id','information_id','comment_content')
+                    ->where('comment_content','like','%'.$word.'%')
+                    ->get();
+                if(!empty($res[0]->comment_content)){
+                    for($x = 0;$x < count($res);$x++) {
+                        $datas[$flag] = $res[$x];
+                        $flag++;
                     }
                 }
             }
-            $result = array_unique($datas);
-            return $datas;
-        } catch (\Exception $e) {
-            logError('查询评论失败！', null, 'error', [$e->getMessage()]);
-            return null;
+            return array_unique($datas);
+            // return array_unique($res);
+        } catch(\Exception $e){
+            logError('查询评论失败！',null,'error',[$e->getMessage()]);
+            return 1;
         }
     }
 

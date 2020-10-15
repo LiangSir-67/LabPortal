@@ -130,28 +130,29 @@ class Article extends Model
      */
     public static function zxl_getArticleDetail(){
         try{
+            //先得到关键字 article
             $words=Censor::pluck('word');
-                $datas = [];
-                for($i = 0;$i<count($words);$i++) {
-                    $word = $words[$i];
-                    $res = self::select('article_id','information_id','title','neirong')
-                               ->where('neirong','like','%'.$word.'%')
-                               ->orWhere('title','like','%'.$word.'%')
-                               ->paginate(8);
-                    if(!empty($res[0]->title)){
-                        for($j=0;$j<count($res);$j++)
-                        {
-                          $datas[$i] = $res[$j];
-                        }
+            $datas = [];
+            $flag = 0;
+            for($i = 0;$i<count($words);$i++) {
+                $word = $words[$i];
+                $res = self::select('article_id','title','neirong')
+                    ->where('neirong','like','%'.$word.'%')
+                    ->orWhere('title','like','%'.$word.'%')
+                    ->get();
+                if(!empty($res[0]->neirong)){
+                    for($x = 0;$x < count($res);$x++) {
+                        $datas[$flag] = $res[$x];
+                        $flag++;
                     }
                 }
-                $result = array_unique($datas);
-                return $result;
+            }
+            return array_unique($datas);
+        } catch(\Exception $e){
+            logError('查询评论失败！',null,'error',[$e->getMessage()]);
+            return 1;
         }
-        catch(\Exception $e){
-            logError('查询文章失败！',null,'error',[$e->getMessage()]);
-            return null;
-        }
+
     }
 
 
