@@ -17,6 +17,12 @@ class Kernel extends ConsoleKernel
         InitModelServiceCommand::class,
     ];
 
+    protected  $middleware = [
+        // 添加全局跨域支持
+        \Fruitcake\Cors\HandleCors::class,
+    ];
+
+
     /**
      * Define the application's command schedule.
      *

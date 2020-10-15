@@ -24,12 +24,12 @@ class SelfInformationController extends Controller //报名申请页面
             'class' => $request['class'],
             'email' => $request['email'],
             'self_introduce' => $request['self_introduce'],
-            'batch_num' => $request['batch_num']
+            'batch_num' => date('Y-m')
         ];
         $ans = Application::get_information($re);
         return $ans ?
-            json_success('报名信息提交成功！' . $ans, null, '200') :
-            json_fail('报名信息提交失败！' . $ans, null, '100');
+            json_success('报名信息提交成功！', null, '200') :
+            json_fail('报名信息提交失败！', null, '100');
 
     }
 }

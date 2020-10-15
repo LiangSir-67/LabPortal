@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Admin\commManage;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\CommManage\InsertMemberRequest;
+use App\Http\Requests\Admin\CommManage\ModifyMemberRequest;
+use App\Http\Requests\Admin\CommManage\QueryMemberRequest;
 use Illuminate\Http\Request;
 use DB;
 use App\Models\Login;
@@ -18,7 +21,7 @@ class OperateController extends Controller
      *        login_status=>用户状态
      * @return json
      */
-    public function insertMember(request $request){
+    public function insertMember(InsertMemberRequest $request){
         $login_id=$request['user_id'];
         $password=$request['user_password'];
         $login_status=$request['login_status'];
@@ -61,11 +64,11 @@ class OperateController extends Controller
      * @return json
      * @author Chenqiuxiang <github.com/Varsion>
      */
-    public function queryMember(request $request)
+    public function queryMember(QueryMemberRequest $request)
     {
-        $nichen = $request['nichen'];
-        $information_id = $request['user_id'];
-        $result = UserInformation::queryMember($nichen, $information_id);
+        $data = $request['data'];
+        $result = UserInformation::queryMember($data);
+
         if (count((array)$result) > 0) {
             return json_success("查询数据成功", $result, 200);
         } else {
@@ -79,7 +82,7 @@ class OperateController extends Controller
      * @return json
      * @author Chenqiuxiang <github.com/Varsion>
      */
-    public function modifyMember(request $request)
+    public function modifyMember(ModifyMemberRequest $request)
     {
         $login_id = $request['user_id'];
         $login_status = $request['user_status'];

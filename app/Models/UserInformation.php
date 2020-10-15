@@ -31,22 +31,19 @@ class UserInformation extends Model
      * @return $data
      * @author Chenqiuxiang <github.com/Varsion>
      */
-    public static function queryMember($nichen, $information_id)
+    public static function queryMember($data)
     {
-        if ($nichen != null) {
+        try {
             $data = self::join('login', 'information_id', 'login_id')
                 ->select('information_id', 'nichen', 'name', 'sex', 'login_date')
-                ->where('nichen', $nichen)
+                ->orwhere('user_information.nichen', 'like', '%' . $data . '%')
+                ->orwhere('information_id', 'like', '%' . $data . '%')
                 ->get();
             return $data;
-        } else {
-            $data = self::join('login', 'information_id', 'login_id')
-                ->select('information_id', 'nichen', 'name', 'sex', 'login_date')
-                ->where('information_id', $information_id)
-                ->get();
-            return $data;
+        } catch (\Exception $e) {
+            logError("查询失败", [$e->getMessage()]);
+            return null;
         }
-
     }
 
     /**
