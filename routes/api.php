@@ -29,7 +29,7 @@ Route::prefix('auth')->namespace('Auth')->group(function () {
 Route::prefix('admin/membermanager')->namespace('Admin\MemberManage')->group(function () {
     Route::post('registstatus', 'ApplicationStatusController@registStatus');
     Route::post('addmembers', 'ApplicationManagerController@addMembers');
-    Route::post('inquiremembers', 'ApplicationManagerController@inquireMembers');
+    Route::get('inquiremembers', 'ApplicationManagerController@inquireMembers');
     Route::get('showmembers', 'ApplicationManagerController@showMembers');
     Route::post('selfinformation', 'SelfInformationController@selfInformation');
     Route::post('setstatus','ApplicationStatusController@setStatus');
