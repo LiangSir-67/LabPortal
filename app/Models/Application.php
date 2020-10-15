@@ -66,11 +66,11 @@ class Application extends Model//报名系统界面
      * @var string
      * @author yangsiqi<github.com/Double-R111>
      */
-    public static function inquireMember($ysq)
+    public static function inquireMember($value)
     {
         try {
-            $data = self::where('application_id', $ysq['application_id'])
-                ->orWhere('name', $ysq['name'])
+            $data = self::where('application_id','like', '%'.$value.'%')
+                ->orWhere('name','like', '%'. $value.'%')
                 ->get();
             return $data;
         } catch (\Exception $e) {

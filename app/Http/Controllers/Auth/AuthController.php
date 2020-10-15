@@ -17,6 +17,10 @@ class AuthController extends Controller
                 return json_fail('账号或者用户名错误!', null, 100);
             } else {
                 $login_id = auth()->user()->login_id;
+                $perssion =auth()->user()->persional;
+                if ($perssion !=0){
+
+                }
                 $res = Login::updateDate($login_id);
                 if ($res != null) {
                     return json_success('登陆成功！', array(

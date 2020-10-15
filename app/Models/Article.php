@@ -8,7 +8,7 @@ class Article extends Model
 {
     protected $table = "article";
     public $timestamps = true;
-    protected $primaryKey = 'article_id';
+//    protected $primaryKey = 'article_id';
     protected $guarded = [];
 
 
@@ -134,7 +134,7 @@ class Article extends Model
                 $datas = [];
                 for($i = 0;$i<count($words);$i++) {
                     $word = $words[$i];
-                    $res = self::select('article_id','title','neirong')
+                    $res = self::select('article_id','information_id','title','neirong')
                                ->where('neirong','like','%'.$word.'%')
                                ->orWhere('title','like','%'.$word.'%')
                                ->paginate(8);

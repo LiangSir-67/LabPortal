@@ -23,7 +23,7 @@ class GoodMember extends Model
     {
         try {
             $res = GoodMember::orderBy('priority', 'asc')
-                ->get();
+                ->paginate(8);
             return $res;
         } catch (\Exception $e) {
             logError('搜索错误', [$e->getMessage()]);

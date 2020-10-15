@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\MemberManage;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\MemberManage\InquireMembersRequest;
 use Illuminate\Http\Request;
 use App\Models\ApplicationManage;
 use App\Http\Controllers\Admin\MemberManage\EmailConfirmController;
@@ -30,10 +31,10 @@ class ApplicationManagerController extends Controller //报名成员信息管理
      * @return \Illuminate\Http\JsonResponse\
      * @author yangsiqi<github.com/Double-R111>
      */
-    public function inquireMembers(AddInquireMembersRequest $request)
+    public function inquireMembers(InquireMembersRequest $request)
     {
-        $ysq = $request;
-        $ans = Application::inquireMember($ysq);
+        $value = $request['value'];
+        $ans = Application::inquireMember($value);
         return $ans != null?
             json_success('找到该成员', $ans, '200') :
             json_fail('该成员不存在', null, 100);

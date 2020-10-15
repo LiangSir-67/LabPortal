@@ -22,7 +22,7 @@ class Link extends Model
     {
         try {
             $zc = self::orderBy('priority', 'asc')
-                ->get();
+                ->paginate(8);
             return $zc;
         } catch (\Exception $e) {
             logError('搜索失败', [$e->getMessage()]);

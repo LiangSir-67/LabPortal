@@ -79,7 +79,7 @@ class NewsBulletinManage extends Model
             $zc = self::join('content', 'content.nb_id', 'news_bulletin_manage.nb_id')
                 ->select('news_bulletin_manage.*', 'content.title', 'content.priority', 'content.neirong')
                 ->orderBy('priority', 'asc')
-                ->get();
+                ->paginate(8);
             return $zc;
         } catch (\Exception $e) {
             logError('搜索失败', [$e->getMessage()]);
@@ -110,6 +110,7 @@ class NewsBulletinManage extends Model
             return true;
         } catch (\Exception $e) {
             logError('修改失败', [$e->getMessage()]);
+            return false;
         }
     }
 
@@ -122,7 +123,7 @@ class NewsBulletinManage extends Model
     {
         try {
             $res = NewsBulletinManage::join('content', 'content.nb_id', 'news_bulletin_manage.nb_id')
-                ->select('content.*', 'news_bulletin_manage.class_id')
+                ->select('content.*', 'news_bulletin_manage.*')
                 ->where('title', $zc['title'])
                 ->orWhere('title', 'like', '%' . $zc['title'] . '%')
                 ->orderBy('priority', 'asc')
