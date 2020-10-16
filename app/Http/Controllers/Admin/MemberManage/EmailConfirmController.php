@@ -10,11 +10,8 @@ use App\Models\EmailCheck;
 use App\Models\EmailSend;
 use App\Models\Login;
 use App\Models\UserInfo;
-use http\Env;
-use http\Env\Url;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 
 

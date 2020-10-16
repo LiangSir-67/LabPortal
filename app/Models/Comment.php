@@ -103,7 +103,11 @@ class Comment extends Model
     public static function zxl_getComment($value)
     {
         try {
-            $res = self::where('comment_id', '=', $value)->get();
+            $res=self::join('user_information','user_information.information_id','comment.information_id')
+                ->join('article','article.article_id','comment.article_id')
+                ->where('comment_id','=',$value)
+                ->select('user_information.information_id','user_information.name','comment.comment_content','article.title')
+                ->get();
             return $res;
         } catch (Exception $e) {
             logError('查询单条评论失败！', null, '状态时失败', [$e->getMessage()]);
