@@ -17,9 +17,9 @@ class AuthController extends Controller
                 return json_fail('账号或者用户名错误!', null, 100);
             } else {
                 $login_id = auth()->user()->login_id;
-                $perssion =auth()->user()->persional;
-                if ($perssion !=0) {
-
+//                $perssion =auth()->user()->persional;
+//                if ($perssion !=0) {
+//
 
                     $res = Login::updateDate($login_id);
                     if ($res != null) {
@@ -28,10 +28,10 @@ class AuthController extends Controller
                             'token_type' => 'bearer',
                             'expires_in' => auth()->factory()->getTTL() * 60
                         ), 200);
-                    } else {
-                        $this->logout();
-                        return json_fail("登陆失败!", null, 500);
-                    }
+//                    } else {
+//                        $this->logout();
+//                        return json_fail("登陆失败!", null, 500);
+//                    }
                 }else{
                     auth()->logout();
                     return json_fail('账号或者用户名错误!', null, 100);
