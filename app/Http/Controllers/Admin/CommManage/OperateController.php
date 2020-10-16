@@ -24,9 +24,8 @@ class OperateController extends Controller
     public function insertMember(InsertMemberRequest $request){
         $login_id=$request['user_id'];
         $password=$request['user_password'];
-        $login_status=$request['login_status'];
         $password=bcrypt($password);
-        $result=Login::insertMember($login_id,$password,$login_status);
+        $result=Login::insertMember($login_id,$password);
         $res=UserInformation::insertInformation($login_id);
         if($res)
         {

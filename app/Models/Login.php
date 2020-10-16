@@ -74,12 +74,11 @@ class Login extends \Illuminate\Foundation\Auth\User implements JWTSubject, Auth
      * @return $res
      * @author Chenqiuxiang <github.com/Varsion>
      */
-    public static function insertMember($login_id, $password, $login_status)
+    public static function insertMember($login_id, $password)
     {
         try {
             $res = self::create(
                 [
-                    'login_status' => $login_status,
                     'login_date' => now(),
                     'login_id' => $login_id,
                     'password' => $password,

@@ -11,7 +11,7 @@ class Comment extends Model
 {
     protected $table = "comment";
     public $timestamps = true;
-    protected $primaryKey = 'comment_id';
+//    protected $primaryKey = 'comment_id';
     protected $guarded = [];
 
     /**

@@ -35,7 +35,7 @@ class UserInformation extends Model
     {
         try {
             $data = self::join('login', 'information_id', 'login_id')
-                ->select('information_id', 'nichen', 'name', 'sex', 'login_date')
+                ->select('information_id', 'nichen', 'name', 'sex', 'login_date', 'login_status')
                 ->orwhere('user_information.nichen', 'like', '%' . $data . '%')
                 ->orwhere('information_id', 'like', '%' . $data . '%')
                 ->get();
