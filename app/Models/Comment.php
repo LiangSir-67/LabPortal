@@ -60,7 +60,7 @@ class Comment extends Model
                 $word = $words[$i];
                 $res = self::select('comment_id','information_id','comment_content')
                     ->where('comment_content','like','%'.$word.'%')
-                    ->get();
+                    ->paginate(8);
                 if(!empty($res[0]->comment_content)){
                     for($x = 0;$x < count($res);$x++) {
                         $datas[$flag] = $res[$x];

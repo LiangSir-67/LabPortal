@@ -92,7 +92,7 @@ class Censor extends Model
     public static function zxl_getWord()
     {
         try {
-            $res = DB::select('select * from censor');
+            $res = self::paginate(8);
             return $res;
         } catch (Exception $e) {
             logError('查询审查关键字/词失败！状态时失败', [$e->getMessage()]);

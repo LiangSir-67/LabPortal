@@ -23,14 +23,26 @@ class Content extends Model
         try {
             $zc['created_at'] = Carbon::now()->toDateTimeString();
             $zc['updated_at'] = $zc['created_at'];
-            self::insert([
-                'title' => $zc['title'],
-                'p_url' => $zc['p_url'],
-                'priority' => $zc['priority'],
-                'neirong' => $zc['neirong'],
-                'created_at' => $zc['created_at'],
-                'updated_at' => $zc['updated_at']
-            ]);
+            $a = self::find($zc['nb_id']);
+            if($a != null){
+                self::where('nb_id',$zc['nb_id'])
+                ->update([
+                    'title' => $zc['title'],
+                    'p_url' => $zc['p_url'],
+                    'priority' => $zc['priority'],
+                    'neirong' => $zc['neirong'],
+                    'updated_at' => $zc['updated_at']
+                ]);
+            }else{
+                self::insert([
+                    'title' => $zc['title'],
+                    'p_url' => $zc['p_url'],
+                    'priority' => $zc['priority'],
+                    'neirong' => $zc['neirong'],
+                    'created_at' => $zc['created_at'],
+                    'updated_at' => $zc['updated_at']
+                ]);
+            }
             return true;
         } catch (\Exception $e) {
             logError('填报错误', [$e->getMessage()]);

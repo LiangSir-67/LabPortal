@@ -139,7 +139,7 @@ class Article extends Model
                 $res = self::select('article_id','title','neirong')
                     ->where('neirong','like','%'.$word.'%')
                     ->orWhere('title','like','%'.$word.'%')
-                    ->get();
+                    ->paginate(8);
                 if(!empty($res[0]->neirong)){
                     for($x = 0;$x < count($res);$x++) {
                         $datas[$flag] = $res[$x];

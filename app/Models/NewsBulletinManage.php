@@ -22,15 +22,27 @@ class NewsBulletinManage extends Model
     public static function zc_insert($zc)
     {
         try {
-            $res['create_at'] = Carbon::now()->toDateTimeString();
-            $res['updated_at'] = $res['create_at'];
-            self::insert([
-                'class_id' => $zc['class_id'],
-                'operate' => 1,
-                'status' => 1,
-                'create_at' => $res['create_at'],
-                'updated_at' => $res['updated_at']
-            ]);
+            $zc['create_at'] = Carbon::now()->toDateTimeString();
+            $zc['updated_at'] = $zc['create_at'];
+            $a = self::find($zc['nb_id']);
+            if ($a != null){
+                self::where('nb_id',$zc['nb_id'])
+                ->update([
+                    'class_id' => $zc['class_id'],
+                    'operate' => 1,
+                    'status' => 1,
+                    'updated_at' => $zc['updated_at']
+                ]);
+            }else{
+                self::insert([
+                    'class_id' => $zc['class_id'],
+                    'operate' => 1,
+                    'status' => 1,
+                    'create_at' => $zc['create_at'],
+                    'updated_at' => $zc['updated_at']
+                ]);
+            }
+
             return true;
         } catch (\Exception $e) {
             logError('填报错误', [$e->getMessage()]);
@@ -127,7 +139,7 @@ class NewsBulletinManage extends Model
                 ->where('title', $zc['title'])
                 ->orWhere('title', 'like', '%' . $zc['title'] . '%')
                 ->orderBy('priority', 'asc')
-                ->get();
+                ->paginate(8);
             return $res;
         } catch (\Exception $e) {
             logError('搜索失败', [$e->getMessage()]);
@@ -144,7 +156,7 @@ class NewsBulletinManage extends Model
     {
         try {
             $res = self::join('content', 'content.nb_id', 'news_bulletin_manage.nb_id')
-                ->select('news_bulletin_manage.*', 'content.title', 'content.priority', 'content.neirong')
+                ->select('news_bulletin_manage.*', 'content.*')
                 ->find($zc['nb_id']);
             $res['operate'] = 2;
             return $res;
