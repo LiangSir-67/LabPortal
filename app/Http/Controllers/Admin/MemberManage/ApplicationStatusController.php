@@ -17,7 +17,7 @@ class ApplicationStatusController extends Controller //报名系统状态控制
      */
     public function registStatus()
     {
-        $res = ApplicationSetting::getStatus();
+        $res = ApplicationSetting::ysq_getStatus();
         return $res ?
             json_success('当前状态获取成功', $res, 200) :
             json_fail('当前状态获取失败', null, 100);
@@ -32,7 +32,7 @@ class ApplicationStatusController extends Controller //报名系统状态控制
     public function setStatus(SetStatusRequest $request)
     {
         $status = $request['setting_status'];
-        $res = ApplicationSetting::changeStatus($status);
+        $res = ApplicationSetting::ysq_changeStatus($status);
         return $res ?
             json_success('状态改变成功', null, 200) :
             json_fail('状态改变失败', null, 100);

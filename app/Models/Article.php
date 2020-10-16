@@ -174,4 +174,20 @@ class Article extends Model
             return null;
        }
     }
+
+    /**
+     * 查询单个文章
+     * @author zhuxianglin <github.com/lybbor>
+     * @return void
+     */
+    public  static  function zxl_getArticle($value){
+        try{
+            $res=self::where('article_id','=',$value)->get();
+            return $res;
+        }
+        catch(Exception $e){
+            logError('查询文章失败！',null,'状态时失败',[$e->getMessage()]);
+            return null;
+        }
+    }
 }

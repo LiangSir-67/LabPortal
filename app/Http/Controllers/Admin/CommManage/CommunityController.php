@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\CommManage\DeleteArticleRequest;
 use App\Http\Requests\Admin\CommManage\DeleteCommentRequest;
 use App\Http\Requests\Admin\CommManage\DeleteWordRequest;
+use App\Http\Requests\Admin\CommManage\GetArticleRequest;
+use App\Http\Requests\Admin\CommManage\GetCommentRequest;
 use App\Http\Requests\Admin\CommManage\InsertWordRequest;
 use App\Models\Article;
 use Illuminate\Http\Request;
@@ -111,6 +113,31 @@ class CommunityController extends Controller
             json_success('删除评论成功！', null, 200) :
             json_fail('删除评论失败！', null, 100);
     }
+
+    /**
+     * 单条文章查询
+     * @return void
+     * @author zhuxianglin <github.com/lybbor>
+     */
+    public function  getArticle(GetArticleRequest $request)
+    {
+        $atcid=$request->all();
+        $res=Article::zxl_getArticle($atcid['article_id']);
+        return json_success('文章查询成功！', $res, 200) ;
+    }
+
+    /**
+     * 单条评论查询
+     * @return void
+     * @author zhuxianglin <github.com/lybbor>
+     */
+    public function  getComment(GetCommentRequest $request)
+    {
+        $cmtid=$request->all();
+        $res=Comment::zxl_getComment($cmtid['comment_id']);
+        return json_success('评论查询成功！',$res, 200) ;
+    }
+
 
 
 }

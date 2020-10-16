@@ -18,7 +18,7 @@ class ApplicationSetting extends Model
      * @var string
      * @author yangsiqi<github.com/Double-R111>
      */
-    public static function getStatus()
+    public static function ysq_getStatus()
     {
         try {
             $res = self::select('setting_status', 'updated_at')
@@ -38,7 +38,7 @@ class ApplicationSetting extends Model
      * @author yangsiqi<github.com/Double-R111>
      *
      */
-    public static function changeStatus($value)
+    public static function ysq_changeStatus($value)
     {
         try {
             $res = ApplicationSetting::where('setting_id', 1)

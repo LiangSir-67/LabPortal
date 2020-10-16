@@ -19,7 +19,7 @@ class ApplicationManagerController extends Controller //报名成员信息管理
      */
     public function showMembers()//成员信息展示
     {
-        $ans = Application::getMembersInformation();
+        $ans = Application::ysq_getMembersInformation();
         return $ans ?
             json_success('已报名成员信息展示成功', $ans, 200) :
             json_fail('无已报名成员信息', null, 100);
@@ -34,7 +34,7 @@ class ApplicationManagerController extends Controller //报名成员信息管理
     public function inquireMembers(InquireMembersRequest $request)
     {
         $value = $request['value'];
-        $ans = Application::inquireMember($value);
+        $ans = Application::ysq_inquireMember($value);
         return $ans != null?
             json_success('找到该成员', $ans, '200') :
             json_fail('该成员不存在', null, 100);
@@ -49,7 +49,7 @@ class ApplicationManagerController extends Controller //报名成员信息管理
     public function addMembers(AddInquireMembersRequest $request)//添加为新成员
     {
         $ysq = $request;
-        $ans = Application::addMembersFindInsert($ysq);
+        $ans = Application::ysq_addMembersFindInsert($ysq);
         EmailConfirmController::emailConfirm($ans);
         return $ans ?
             json_success('该成员审核通过', $ans, '200') :

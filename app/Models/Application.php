@@ -5,23 +5,24 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Contracts\Validation\Validator;
-use App\Http\Requests\Admin\MemberManage\AddInquireMembersRequest;
+use App\Http\Requests\Admin\MemberManage\AddMembersRequest;
 use App\Models\UserInformation;
+use mysql_xdevapi\Exception;
+use phpDocumentor\Reflection\Types\Mixed_;
 
 class Application extends Model//报名系统界面
 {
     /**
      * 得到新成员信息
-     * @param  $ysq
-     * @return boolean
-     * @var string
      * @author yangsiqi<github.com/Double-R111>
+     * @param  $ysq
+     * @var string
+     * @return boolean
      */
     protected $table = "application";
     public $timestamps = true;
-    protected $guarded = [];
-
-    public static function get_information($ysq)
+    protected $guarded=[];
+    public static function ysq_get_information($ysq)
     {
         try {
             $result = self::insert([
@@ -39,18 +40,17 @@ class Application extends Model//报名系统界面
             return false;
         }
     }
-
     /**
      * 从表单数据中查找成员信息
-     * @return boolean
-     * @var string
      * @author yangsiqi<github.com/Double-R111>
+     * @var string
+     * @return boolean
      */
-    public static function getMembersInformation()//成员信息获取
+    public static function ysq_getMembersInformation()//成员信息获取
     {
         try {
-            $data = Application::select('*')
-                ->orderby('batch_num','ASC')
+            $data = self::select('*')
+                ->orderby('batch_num', 'asc')
                 ->get();
             return $data;
         } catch (\Exception $e) {
@@ -58,17 +58,17 @@ class Application extends Model//报名系统界面
             return false;
         }
     }
-
     /**
      * 通过学号或姓名查找需要审核的新成员信息
-     * @param  $ysq
-     * @return boolean
-     * @var string
      * @author yangsiqi<github.com/Double-R111>
+     * @param  $ysq
+     * @var string
+     * @return boolean
      */
-    public static function inquireMember($value)
+    public static function ysq_inquireMember($value)
     {
         try {
+            //dd($ysq);
             $data = self::where('application_id','like', '%'.$value.'%')
                 ->orWhere('name','like', '%'. $value.'%')
                 ->get();
@@ -81,22 +81,22 @@ class Application extends Model//报名系统界面
 
     /**
      * 添加为新成员即通过审核
-     * * @param $ysq
+     * * @author yangsiqi<github.com/Double-R111>
+     * @param $ysq
      * @return false
-     * @author yangsiqi<github.com/Double-R111>
      */
-    public static function addMembersFindInsert($ysq)
+    public static function ysq_addMembersFindInsert($ysq)
     {
         try {
             $date = self::where('application_id', $ysq['application_id'])
                 ->first();
-            if ($date != null) {
+            if ($date!=null){
                 UserInformation::insert([
                     'information_id' => $date['application_id'],
                     'name' => $date['name'],
                     'sex' => $date['sex'],
                     'email' => $date['email'],
-                    'class' => $date['class'],
+                    'class'=>$date['class'],
                     'produce' => $date['self_introduce']
                 ]);
             }
@@ -104,6 +104,17 @@ class Application extends Model//报名系统界面
         } catch (\Exception $e) {
             logError('成员添加不成功', [$e->getMessage()]);
             return false;
+        }
+    }
+    public static function ysq_select($id){
+        try{
+            $date=Application::where('application_id',$id)
+                ->select('email')
+                ->first();
+            return $date;
+        }catch (Exception $e){
+            logError("查找失败",[$e->getMessage()]);
+            return null;
         }
     }
 

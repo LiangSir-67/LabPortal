@@ -79,6 +79,8 @@ Route::prefix('community')->namespace('Admin\CommManage')->group(function () {
     Route::post('deletearticle', 'CommunityController@deleteArticle');
     Route::GET('getcommentdetail', 'CommunityController@getCommentDetail');
     Route::post('deletecomment', 'CommunityController@deleteComment');
+    Route::GET('getarticle','CommunityController@getArticle');
+    Route::GET('getcomment','CommunityController@getComment');
 });
 
 /**

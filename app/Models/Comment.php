@@ -92,4 +92,23 @@ class Comment extends Model
             return $res;
         }
     }
+
+
+
+    /**
+     * 查询单条评论
+     * @return void
+     * @author zhuxianglin <github.com/lybbor>
+     */
+    public static function zxl_getComment($value)
+    {
+        try {
+            $res = self::where('comment_id', '=', $value)->get();
+            return $res;
+        } catch (Exception $e) {
+            logError('查询单条评论失败！', null, '状态时失败', [$e->getMessage()]);
+            return null;
+        }
+    }
+
 }
