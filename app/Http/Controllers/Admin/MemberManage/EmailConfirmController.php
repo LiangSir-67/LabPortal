@@ -27,8 +27,8 @@ class EmailConfirmController extends Controller //发送验证邮箱
 
         $data = $abc['application_id'];
         for ($i = 0; $i < count($data); $i++) {
-            if ($abc[$i]==null){
-                return new HttpResponseException(json_fail(422, '参数错误!', 422));
+            if ($data[$i]==null){
+                return json_fail('参数错误',null, 422);
             }
         }
         $isFlag = [];

@@ -68,6 +68,7 @@ class CommunityController extends Controller
     public function getArticleDetail()
     {
         $article = Article::zxl_getArticleDetail();
+        var_dump($article);
         return json_success('查询文章成功！', $article, 200);
     }
 
