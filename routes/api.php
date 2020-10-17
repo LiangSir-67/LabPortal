@@ -59,15 +59,19 @@ Route::prefix('pagecontent')->namespace('Admin\PageContent')->group(function () 
     Route::post('deleteteacher', 'MemberIntroController@deleteTeacher');//删除指导老师信息
     Route::post('updateteacher', 'MemberIntroController@updateTeacher');//修改指导老师信息
     Route::post('addteacher', 'MemberIntroController@addTeacher');//新增指导老师信息
+    Route::post('reshowteacher','MemberIntroController@reShowTeacher');//回显指导老师信息
     Route::get('showgoodmem', 'MemberIntroController@showGoodMem');//展示优秀成员信息
     Route::post('deletegoodmem', 'MemberIntroController@deleteGoodMem');//删除优秀成员信息
     Route::post('updategoodmem', 'MemberIntroController@updateGoodMem');//修改指导老师信息
     Route::post('addgoodmem', 'MemberIntroController@addGoodMem');//增加优秀成员信息
+    Route::post('reshowgoodmem', 'MemberIntroController@reShowGoodMem');//增加优秀成员信息
+
 
     Route::get('showfriendurl', 'FriendUrlController@showFriendUrl');//展示友链
     Route::post('deletefriendurl', 'FriendUrlController@deleteFriendUrl');//删除友链
     Route::post('updatefriendurl', 'FriendUrlController@updateFriendUrl');//更新友链
     Route::post('addfriendurl', 'FriendUrlController@addFriendUrl');//新增友链
+    Route::post('reshowfriendurl', 'FriendUrlController@reShowFriendUrl');//回显友链
 });
 
 

@@ -96,6 +96,24 @@ class GoodMember extends Model
         }
     }
 
+    /**
+     * 回显成员
+     * @auther ZhongChun <github.com/RobbEr929>
+     * @param [string]
+     * return [string]
+     */
+    public static function zc_reShow($zc)
+    {
+        try {
+            $res = GoodMember::where('member_id',$zc['member_id'])
+                ->get();
+            return $res;
+        } catch (\Exception $e) {
+            logError('搜索错误', [$e->getMessage()]);
+            return false;
+        }
+    }
+
 
     /**
      * 通过优先级获取在goodmemeber表中的数据

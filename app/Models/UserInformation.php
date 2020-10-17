@@ -20,7 +20,7 @@ class UserInformation extends Model
     {
         $data = self::join('login', 'information_id', 'login_id')
             ->select('information_id', 'nichen', 'name', 'sex', 'login_date', 'login_status')
-            ->get();
+            ->paginate(5);
         return $data;
 
     }
@@ -38,7 +38,7 @@ class UserInformation extends Model
                 ->select('information_id', 'nichen', 'name', 'sex', 'login_date', 'login_status')
                 ->orwhere('user_information.nichen', 'like', '%' . $data . '%')
                 ->orwhere('information_id', 'like', '%' . $data . '%')
-                ->get();
+                ->paginate(5);
             return $data;
         } catch (\Exception $e) {
             logError("查询失败", [$e->getMessage()]);

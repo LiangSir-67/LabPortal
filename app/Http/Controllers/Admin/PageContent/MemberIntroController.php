@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin\PageContent;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\PageContent\ReShowGoodMemRequest;
+use App\Http\Requests\Admin\PageContent\ReShowTeacherRequest;
 use App\Models\GoodMember;
 use App\Models\Teacher;
 use App\Http\Requests\Admin\PageContent\DeleteTeacherRequest;
@@ -143,6 +145,39 @@ class MemberIntroController extends Controller
             return json_success('添加优秀成员成功!', null, 200);
         } else {
             return json_fail('添加优秀成员失败!', null, 100);
+        }
+    }
+
+    /**
+     * 回显指导老师信息
+     * @auther ZhongChun <github.com/RobbEr929>
+     * @param ReShowTeacherRequest $request
+     * @return json
+     */
+    public static function reShowTeacher(ReShowTeacherRequest $request){
+        $zc = $request;
+        $res = Teacher::zc_reShow($zc);
+        if ($res) {
+            return json_success('回显老师成功!', $res, 200);
+        } else {
+            return json_fail('回显老师失败!', null, 100);
+        }
+    }
+
+    /**
+     * 回显优秀成员信息
+     * @auther ZhongChun <github.com/RobbEr929>
+     * @param ReShowGoodMemRequest $request
+     * @return json
+     */
+    public static function reShowGoodMem(ReShowGoodMemRequest $request)
+    {
+        $zc = $request;
+        $res = GoodMember::zc_reShow($zc);
+        if ($res) {
+            return json_success('优秀成员展示成功!', $res, 200);
+        } else {
+            return json_fail('优秀成员展示失败!', null, 100);
         }
     }
 }

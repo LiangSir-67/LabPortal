@@ -116,4 +116,21 @@ class Teacher extends Model
             logger::Error('没找到该图片', [$e->getMessage()]);
         }
     }
+
+    /**
+     * 回显数据
+     * @auther ZhongChun <github.com/RobbEr929>
+     * @param string
+     * return [string]
+     */
+    public static function zc_reShow($zc)
+    {
+        try {
+            $res = Teacher::where('id',$zc['id'])
+                ->get();
+            return $res;
+        } catch (\Exception $e) {
+            logError('搜索错误', [$e->getMessage()]);
+        }
+    }
 }

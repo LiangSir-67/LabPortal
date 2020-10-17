@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\PageContent;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\PageContent\ReShowUrlRequest;
 use App\Models\Link;
 use App\Http\Requests\Admin\PageContent\AddFriendUrlRequest;
 use App\Http\Requests\Admin\PageContent\DeleteFriendUrlRequest;
@@ -76,5 +77,23 @@ class FriendUrlController extends Controller
             return json_fail('添加友链失败!', null, 100);
         }
     }
+
+    /**
+     * 回显友链
+     * @auther ZhongChun <github.com/RobbEr929>
+     * @param ReShowUrlRequest $request
+     * @return json
+     */
+    public static function reShowFriendUrl(ReShowUrlRequest $request)
+    {
+        $zc = $request;
+        $res = Link::zc_reShow($zc);
+        if ($res) {
+            return json_success('回显友链成功!', $res, 200);
+        } else {
+            return json_fail('回显友链失败!', null, 100);
+        }
+    }
+
 }
 

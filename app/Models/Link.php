@@ -129,4 +129,21 @@ class Link extends Model
             logger::Error('没找到优秀成员信息', [$e->getMessage()]);
         }
     }
+
+    /**
+     * 回显友链
+     * @auther ZhongChun <github.com/RobbEr929>
+     * return [string]
+     */
+    public static function zc_reShow($zc)
+    {
+        try {
+            $res= Link::where('link_id',$zc['link_id'])
+                ->get();
+            return $res;
+        } catch (\Exception $e) {
+            logError('搜索失败', [$e->getMessage()]);
+            return null;
+        }
+    }
 }
