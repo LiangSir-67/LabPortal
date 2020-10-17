@@ -34,6 +34,7 @@ Route::prefix('admin/membermanager')->namespace('Admin\MemberManage')->group(fun
     Route::post('selfinformation', 'SelfInformationController@selfInformation');
     Route::post('setstatus','ApplicationStatusController@setStatus');
     Route::post('emailconfirm', 'EmailConfirmController@emailConfirm');
+    Route::get('showdetails', 'ApplicationManagerController@showDetails');
 });
 
 

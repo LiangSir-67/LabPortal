@@ -55,4 +55,19 @@ class ApplicationManagerController extends Controller //报名成员信息管理
             json_success('该成员审核通过', $ans, '200') :
             json_fail('该成员审核未通过', null, 100);
     }
+    /*
+     * 详情页展示
+     * @return \Illuminate\Http\JsonResponse\
+     * @author yangsiqi<github.com/Double-R111>
+     */
+    public function showDetails(Request $request)//详情页展示
+    {
+        $application_id = $request['application_id'];
+        //$data = Application::ysq_getDetils($application_id);
+        //return $data;
+        $data = Application::ysq_getDetails($application_id);
+        return $data ?
+            json_success('详情页展示成功', $data, 200) :
+            json_fail('详情页展示失败', null, 100);
+    }
 }

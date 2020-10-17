@@ -117,5 +117,16 @@ class Application extends Model//报名系统界面
             return null;
         }
     }
-
+    public static function ysq_getDetails($id)
+    {
+        try {
+            $res = self::select('*')
+                ->where('application_id', $id)
+                ->get();
+            return $res;
+        } catch (\Exception $err) {
+            logError('用户详情页展示错误', [$err->getMessage()]);
+            return null;
+        }
+    }
 }
