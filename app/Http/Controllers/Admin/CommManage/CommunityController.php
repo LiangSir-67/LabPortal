@@ -13,6 +13,8 @@ use App\Models\Article;
 use Illuminate\Http\Request;
 use App\Models\Censor;
 use App\Models\Comment;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Pagination\Paginator;
 
 class CommunityController extends Controller
 {
@@ -62,14 +64,32 @@ class CommunityController extends Controller
 
     /**
      * 查询文章详情
-     * @return json
      * @author zhuxianglin <github.com/lybbor>
+     * @return json
      */
-    public function getArticleDetail()
-    {
-        $article = Article::zxl_getArticleDetail();
-        var_dump($article);
-        return json_success('查询文章成功！', $article, 200);
+    //查文章详情
+    public function getArticleDetail(){
+        $article=Article::zxl_getArticleDetail();
+        return $article;
+    }
+
+    public function pageArticle(Request $request){
+        $hhh=$this->getArticleDetail();
+        $perPage = 8;            //每页显示数量
+        if ($request->has('page')) {
+            $current_page = $request->input('page');
+            $current_page = $current_page <= 0 ? 1 :$current_page;
+        }
+        else {
+            $current_page = 1;
+        }
+        $item = array_slice($hhh,($current_page-1)*$perPage, $perPage);
+        $totals = count($hhh);
+        $paginator =new LengthAwarePaginator($item, $totals, $perPage, $current_page, [
+            'path' => Paginator::resolveCurrentPath(),
+            'pageName' => 'page',
+        ]);
+        return response()->json(['code'=> 200,'msg'=>'页数显示成功','data'=>$paginator]);
     }
 
     /**
@@ -91,15 +111,33 @@ class CommunityController extends Controller
 
     /**
      * 查评论
-     * @return void
      * @author zhuxianglin <github.com/lybbor>
+     * @return void
      */
-    public function getCommentDetail()
-    {
-        $comment = Comment::zxl_getCommentDetail();
-        return json_success('查询评论成功！', $comment, 200);
+    //查评论详情
+    public function getCommentDetail(){
+        $comment=Comment::zxl_getCommentDetail();
+        return $comment;
     }
 
+    public function pageComment(Request $request){
+        $hhh=$this->getCommentDetail();
+        $perPage = 8;            //每页显示数量
+        if ($request->has('page')) {
+            $current_page = $request->input('page');
+            $current_page = $current_page <= 0 ? 1 :$current_page;
+        }
+        else {
+            $current_page = 1;
+        }
+        $item = array_slice($hhh,($current_page-1)*$perPage, $perPage);
+        $totals = count($hhh);
+        $paginator =new LengthAwarePaginator($item, $totals, $perPage, $current_page, [
+            'path' => Paginator::resolveCurrentPath(),
+            'pageName' => 'page',
+        ]);
+        return response()->json(['code'=> 200,'msg'=>'页数显示成功','data'=>$paginator]);
+    }
 
     /**
      * 删除评论

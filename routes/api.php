@@ -80,9 +80,9 @@ Route::prefix('community')->namespace('Admin\CommManage')->group(function () {
     Route::POST('insertword', 'CommunityController@insertWord');
     Route::post('deleteword', 'CommunityController@deleteWord');
     Route::GET('getword', 'CommunityController@getWord');
-    Route::GET('getarticledetail', 'CommunityController@getArticleDetail');
+    Route::GET('getarticledetail', 'CommunityController@pageArticle');
     Route::post('deletearticle', 'CommunityController@deleteArticle');
-    Route::GET('getcommentdetail', 'CommunityController@getCommentDetail');
+    Route::GET('getcommentdetail', 'CommunityController@pageComment');
     Route::post('deletecomment', 'CommunityController@deleteComment');
     Route::GET('getarticle','CommunityController@getArticle');
     Route::GET('getcomment','CommunityController@getComment');
